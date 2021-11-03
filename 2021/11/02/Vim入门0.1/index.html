@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="前言最近在学习linux时注意到了Vim这个大家都说很厉害的工具 其实在此之前学习生活中也是有注意到这个工具的但是只限于i,:w,:q这些基本命令 机缘巧合之下刷到一位大佬的视频引起了我学习vim的兴趣">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vim入门教学">
+<meta property="og:url" content="http://example.com/2021/11/02/Vim%E5%85%A5%E9%97%A80.1/index.html">
+<meta property="og:site_name" content="小Z的个人博客">
+<meta property="og:description" content="前言最近在学习linux时注意到了Vim这个大家都说很厉害的工具 其实在此之前学习生活中也是有注意到这个工具的但是只限于i,:w,:q这些基本命令 机缘巧合之下刷到一位大佬的视频引起了我学习vim的兴趣">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://media.giphy.com/media/62J4HYUU88z9sK199E/giphy.gif">
+<meta property="og:image" content="https://media.giphy.com/media/DwNdg2eTRCcmDqynHK/giphy.gif">
+<meta property="og:image" content="https://media.giphy.com/media/h9TMrJPEVI1lZpCckp/giphy.gif">
+<meta property="og:image" content="http://example.com/Users/zeke/Downloads/linux.png">
+<meta property="og:image" content="http://example.com/Users/zeke/Downloads/mac.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/61822d662ab3f51d91221a35.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6182268e2ab3f51d9119ea49.gif">
+<meta property="og:image" content="https://pic.imgdb.cn/item/61822d962ab3f51d912268d2.gif">
+<meta property="og:image" content="https://pic.imgdb.cn/item/61822db02ab3f51d91229673.gif">
+<meta property="og:image" content="https://pic.imgdb.cn/item/61822dcf2ab3f51d9122c192.gif">
+<meta property="og:image" content="https://pic.imgdb.cn/item/61822dde2ab3f51d9122d5f1.gif">
+<meta property="og:image" content="https://pic.imgdb.cn/item/61822ded2ab3f51d9122e91d.gif">
+<meta property="og:image" content="https://pic.imgdb.cn/item/61822dfc2ab3f51d9122fef8.gif">
+<meta property="og:image" content="https://pic.imgdb.cn/item/61822e0d2ab3f51d91231907.gif">
+<meta property="og:image" content="https://pic.imgdb.cn/item/61822e332ab3f51d91234c8f.gif">
+<meta property="og:image" content="https://pic.imgdb.cn/item/61822e432ab3f51d912362b8.gif">
+<meta property="og:image" content="https://pic.imgdb.cn/item/61822e4c2ab3f51d91237132.gif">
+<meta property="og:image" content="https://pic.imgdb.cn/item/61822e5a2ab3f51d9123852e.gif">
+<meta property="og:image" content="https://pic.imgdb.cn/item/61822e682ab3f51d91239915.gif">
+<meta property="og:image" content="https://www.runoob.com/wp-content/uploads/2015/10/vi-vim-cheat-sheet-sch.gif">
+<meta property="article:published_time" content="2021-11-02T15:02:11.876Z">
+<meta property="article:modified_time" content="2021-11-03T11:18:09.513Z">
+<meta property="article:author" content="Zeke.Chin">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://media.giphy.com/media/62J4HYUU88z9sK199E/giphy.gif">
+
+<link rel="canonical" href="http://example.com/2021/11/02/Vim%E5%85%A5%E9%97%A80.1/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>vim入门教学 | 小Z的个人博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">小Z的个人博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">与无声中听惊雷</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>标签<span class="badge">0</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>分类<span class="badge">0</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档<span class="badge">2</span></a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="sitemap fa-fw"></i>站点地图</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="heartbeat fa-fw"></i>公益 404</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/11/02/Vim%E5%85%A5%E9%97%A80.1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://pic.imgdb.cn/item/6182469d2ab3f51d91443e54.jpg">
+      <meta itemprop="name" content="Zeke.Chin">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小Z的个人博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          vim入门教学
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-11-02 15:02:11" itemprop="dateCreated datePublished" datetime="2021-11-02T15:02:11Z">2021-11-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-11-03 11:18:09" itemprop="dateModified" datetime="2021-11-03T11:18:09Z">2021-11-03</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近在学习linux时注意到了Vim这个大家都说很厉害的工具</p>
+<p>其实在此之前学习生活中也是有注意到这个工具的但是只限于i,:w,:q这些基本命令</p>
+<p>机缘巧合之下刷到一位大佬的视频引起了我学习vim的兴趣</p>
+<span id="more"></span>
+
+<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>如上文所说</p>
+<p>小z初始vim的时候 就是看了某个网上对于配文文件的命令<code>vim config</code></p>
+<p>然后进去之后就是一头雾水发现<code>esc</code>没用<code>Contr+z/c</code>全都都没用</p>
+<p>不得已只能<code>cd</code>进目录用vscode进行修改 非常之麻烦</p>
+<p><em><strong>所以</strong></em>在教程开始之前我先教大家一下如何修改文件，保存文件，以及退出那我曾经视为洪水猛兽的vim命令行</p>
+<table>
+<thead>
+<tr>
+<th align="center">退出</th>
+<th align="center">修改</th>
+<th align="center">保存</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>:q</code></td>
+<td align="center"><code>:i</code></td>
+<td align="center"><code>:w</code></td>
+</tr>
+<tr>
+<td align="center"><img src="https://media.giphy.com/media/62J4HYUU88z9sK199E/giphy.gif"></td>
+<td align="center"><img src="https://media.giphy.com/media/DwNdg2eTRCcmDqynHK/giphy.gif"></td>
+<td align="center"><img src="https://media.giphy.com/media/h9TMrJPEVI1lZpCckp/giphy.gif"></td>
+</tr>
+</tbody></table>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>linux<img src="/Users/zeke/Downloads/linux.png" alt="linux" style="zoom:10%;" />和mac<img src="/Users/zeke/Downloads/mac.png" alt="mac" style="zoom:10%;" />系统下都是预装了Vim的在此不再赘述(windows自求多福👀)</p>
+<h1 id="脑图"><a href="#脑图" class="headerlink" title="脑图"></a>脑图</h1><div align='center' ><font size='50'>完整版截图如下</font></div>
+
+<p><img src="https://pic.imgdb.cn/item/61822d662ab3f51d91221a35.png"></p>
+<div align='center' ><font size='50'>缩略版总览</font></div>
+
+<blockquote class="pullquote mindmap mindmap-md"><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/Zeke-chin/config/raw/main/vim/Vim%E5%85%A5%E9%97%A8.xmind">vim入门基础</a><ul>
+<li>vi/vim键盘图</li>
+<li>三种模式mode<ul>
+<li>命令模式<br>Command mode</li>
+<li>输入模式<br>Inscert mode</li>
+<li>编辑模式<br>Lastcive mode</li>
+</ul>
+</li>
+<li>配置文件vimrc</li>
+<li>常用动作motion<ul>
+<li>输入</li>
+<li>移动</li>
+<li>删除</li>
+<li>撤销</li>
+<li>拷贝</li>
+<li>黏贴</li>
+<li>查找</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+
+
+
+
+
+
+
+
+
+
+
+<h2 id="强烈建议下载脑图"><a href="#强烈建议下载脑图" class="headerlink" title="强烈建议下载脑图"></a><strong>强烈建议<a target="_blank" rel="noopener" href="https://github.com/Zeke-chin/config/raw/main/vim/Vim%E5%85%A5%E9%97%A8.xmind">下载</a>脑图</strong></h2><p>(其实是由于小z不会把.xmiad文件添加到makedown 如果有大佬会的话 欢迎赐教)</p>
+<h1 id="常用动作motion"><a href="#常用动作motion" class="headerlink" title="常用动作motion"></a>常用动作motion</h1><h2 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h2><ul>
+<li><p><em><strong>i：在光标前插入</strong></em></p>
+</li>
+<li><p><em><strong>I：在行首插入</strong></em></p>
+<ul>
+<li><details><summary>👉点击查看示例👈</summary>
+
+<img src="https://pic.imgdb.cn/item/6182268e2ab3f51d9119ea49.gif"></details></li>
+</ul>
+</li>
+<li><p><em><strong>a：在光标后一位插入</strong></em></p>
+</li>
+<li><p><em><strong>A：在行尾插入</strong></em></p>
+<ul>
+<li><details><summary>👉点击查看示例👈</summary>
+
+<img src="https://pic.imgdb.cn/item/61822d962ab3f51d912268d2.gif"></details></li>
+</ul>
+</li>
+<li><p><em><strong>o：在下一行插入新行</strong></em></p>
+</li>
+<li><p><em><strong>O：在上一行插入新行</strong></em></p>
+<ul>
+<li><details><summary>👉点击查看示例👈</summary>
+
+<img src="https://pic.imgdb.cn/item/61822db02ab3f51d91229673.gif"></details></li>
+</ul>
+</li>
+</ul>
+<h2 id="移动"><a href="#移动" class="headerlink" title="移动"></a>移动</h2><ul>
+<li><p>上下左右</p>
+<ul>
+<li><p><em><strong>上</strong></em></p>
+<ul>
+<li><em><strong>k————K</strong></em></li>
+</ul>
+</li>
+<li><p><em><strong>下</strong></em></p>
+<ul>
+<li><em><strong>j————J</strong></em></li>
+</ul>
+</li>
+<li><p><em><strong>左</strong></em></p>
+<ul>
+<li><em><strong>h————H</strong></em></li>
+</ul>
+</li>
+<li><p><em><strong>右</strong></em></p>
+<ul>
+<li><p><em><strong>l————L</strong></em></p>
+ <details><summary>👉点击查看示例👈</summary>
+
+<p> <img src="https://pic.imgdb.cn/item/61822dcf2ab3f51d9122c192.gif"></p>
+ </details></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p><em><strong>gg/G：至文首/文尾</strong></em></p>
+<ul>
+<li><details><summary>👉点击查看示例👈</summary>
+
+<img src="https://pic.imgdb.cn/item/61822dde2ab3f51d9122d5f1.gif"></details></li>
+</ul>
+</li>
+<li><p><em><strong>e/E：至词尾/连续单词词尾</strong></em></p>
+<ul>
+<li><details><summary>👉点击查看示例👈</summary>
+
+<img src="https://pic.imgdb.cn/item/61822ded2ab3f51d9122e91d.gif"></details></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p><em><strong>b/B：至上个单词词尾/连续单词词尾</strong></em></p>
+<ul>
+<li><details><summary>👉点击查看示例👈</summary>
+
+<img src="https://pic.imgdb.cn/item/61822dfc2ab3f51d9122fef8.gif"></details></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p><em><strong>w/W:至下个单词词尾/词首</strong></em></p>
+<ul>
+<li><details><summary>👉点击查看示例👈</summary>
+
+<img src="https://pic.imgdb.cn/item/61822e0d2ab3f51d91231907.gif"></details></li>
+</ul>
+</li>
+</ul>
+<h2 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h2><ul>
+<li><p><em><strong>J：合并两行，删除该行下一个↵</strong></em></p>
+</li>
+<li><p><em><strong>x：删除光标后一个字符</strong></em></p>
+</li>
+<li><p><em><strong>X：删除光标前一个字符</strong></em>**</p>
+<ul>
+<li><details><summary>👉点击查看示例👈</summary>
+
+<img src="https://pic.imgdb.cn/item/61822e332ab3f51d91234c8f.gif"></details></li>
+</ul>
+</li>
+<li><p><em><strong>d：删除</strong></em></p>
+</li>
+<li><p><em><strong>D：删除该行</strong></em></p>
+<ul>
+<li><details><summary>👉点击查看示例👈</summary>
+
+<p><img src="https://pic.imgdb.cn/item/61822e432ab3f51d912362b8.gif"></p>
+</details></li>
+</ul>
+</li>
+</ul>
+<h2 id="撤销"><a href="#撤销" class="headerlink" title="撤销"></a>撤销</h2><ul>
+<li><p><em><strong>u：撤销</strong></em></p>
+</li>
+<li><p><em><strong>U：撤销该行命令</strong></em></p>
+<ul>
+<li><details><summary>👉点击查看示例👈</summary>
+
+<p><img src="https://pic.imgdb.cn/item/61822e4c2ab3f51d91237132.gif"></p>
+</details></li>
+</ul>
+</li>
+</ul>
+<h2 id="拷贝"><a href="#拷贝" class="headerlink" title="拷贝"></a>拷贝</h2><ul>
+<li><p><em><strong>y：拷贝</strong></em></p>
+</li>
+<li><p><em><strong>Y：拷贝改行</strong></em></p>
+<ul>
+<li><details><summary>👉点击查看示例👈</summary>
+
+<p><img src="https://pic.imgdb.cn/item/61822e5a2ab3f51d9123852e.gif"></p>
+</details></li>
+</ul>
+</li>
+</ul>
+<h2 id="黏贴"><a href="#黏贴" class="headerlink" title="黏贴"></a>黏贴</h2><ul>
+<li><p><em><strong>p：光标后</strong></em></p>
+</li>
+<li><p><em><strong>P：光标前</strong></em></p>
+<ul>
+<li><details><summary>👉点击查看示例👈</summary>
+
+<p>  <img src="https://pic.imgdb.cn/item/61822e682ab3f51d91239915.gif"></p>
+  </details></li>
+</ul>
+</li>
+</ul>
+<h3 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h3><ul>
+<li><p><em><strong>f：在光标后查找并跳转</strong></em></p>
+</li>
+<li><p><em><strong>F：在光标前查找并跳转</strong></em></p>
+<ul>
+<li><details><summary>👉点击查看示例👈</summary>
+![](https://pic.imgdb.cn/item/61822e712ab3f51d9123a6cb.gif)
+</details></li>
+</ul>
+</li>
+</ul>
+<h1 id="配置文件vimrc"><a href="#配置文件vimrc" class="headerlink" title="配置文件vimrc"></a>配置文件vimrc</h1><p>配置文件可以大幅提高我们使用vim时候的效率</p>
+<p>每个人都应该拥有仅属于自己的配置文件</p>
+<p>以下是我参考<a target="_blank" rel="noopener" href="https://space.bilibili.com/13081489/?spm_id_from=333.999.0.0">B站大佬<em><strong>TheCW</strong></em></a>视频所写的配置文件大家可以作为参考</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line">map Q :q&lt;CR&gt;		&quot;&quot;&quot;退出</span><br><span class="line">map R :source $MYVIMRC&lt;CR&gt;&quot;&quot;&quot;重启</span><br><span class="line">map S :w&lt;CR&gt;		&quot;&quot;&quot;保存</span><br><span class="line">map s &lt;nop&gt;		&quot;&quot;&quot;防止误触</span><br><span class="line"></span><br><span class="line">noremap i k		&quot;&quot;&quot;上</span><br><span class="line">noremap j h		&quot;&quot;&quot;下</span><br><span class="line">noremap k j		&quot;&quot;&quot;左</span><br><span class="line">noremap K 5j		&quot;&quot;&quot;快速下</span><br><span class="line">noremap I 5k		&quot;&quot;&quot;快速上</span><br><span class="line">noremap m i</span><br><span class="line">noremap M I</span><br><span class="line">noremap = nzz		&quot;&quot;&quot;在查找模式下换下一个查找目标并居中zz</span><br><span class="line">noremap - Nzz		&quot;&quot;&quot;在查找模式下换上一个查找目标并居中zz</span><br><span class="line"></span><br><span class="line">map sd :set splitright&lt;CR&gt;:vsplit&lt;CR&gt;</span><br><span class="line">map sa :set nosplitright&lt;CR&gt;:vsplit&lt;CR&gt;</span><br><span class="line">map sw :set nosplitbelow&lt;CR&gt;:split&lt;CR&gt;</span><br><span class="line">map sx :set splitbelow&lt;CR&gt;:split&lt;CR&gt;</span><br><span class="line">map sq &lt;C-w&gt;t&lt;C-w&gt;K		&quot;&quot;&quot;改成上下分屏</span><br><span class="line">map se &lt;C-w&gt;t&lt;C-w&gt;H		&quot;&quot;&quot;改成左右分屏</span><br><span class="line">&quot;&quot;&quot;上下左右</span><br><span class="line">map &lt;LEADER&gt;i &lt;C-w&gt;j</span><br><span class="line">map &lt;LEADER&gt;k &lt;C-w&gt;k</span><br><span class="line">map &lt;LEADER&gt;j &lt;C-w&gt;h</span><br><span class="line">map &lt;LEADER&gt;l &lt;C-w&gt;l</span><br><span class="line"></span><br><span class="line">&quot;&quot;&quot;↑↓←→分别表示分屏大小</span><br><span class="line">map &lt;up&gt; :res -5&lt;CR&gt;</span><br><span class="line">map &lt;down&gt; :res +5&lt;CR&gt;</span><br><span class="line">map &lt;left&gt; :vertical resize+5&lt;CR&gt;</span><br><span class="line">map &lt;right&gt; :vertical resize-5&lt;CR&gt;</span><br><span class="line"></span><br><span class="line">map tr :tabe&lt;CR&gt;    &quot;&quot;&quot;打开新的标签页</span><br><span class="line">map tf :-tabnext&lt;CR&gt;&quot;&quot;&quot;左一标签页</span><br><span class="line">map tg :+tabnext&lt;CR&gt;&quot;&quot;&quot;右一标签页</span><br><span class="line"></span><br><span class="line">set cursorline		&quot;&quot;&quot;下划线</span><br><span class="line">set showcmd		&quot;&quot;&quot;右下角显示键入</span><br><span class="line">set wildmenu		&quot;&quot;&quot;代码补全 智能提示</span><br><span class="line">set wrap		&quot;&quot;&quot;自动换行</span><br><span class="line"></span><br><span class="line">set hlsearch		&quot;&quot;&quot;查找高亮</span><br><span class="line">&quot;&quot;&quot;去除进去时显示上次搜索高亮</span><br><span class="line">exec &quot;nohlsearch&quot;</span><br><span class="line">set incsearch		&quot;&quot;&quot;边输入边高亮</span><br><span class="line">set number.     &quot;&quot;&quot;显示行号</span><br><span class="line">set ignorecase		&quot;&quot;&quot;忽略大小写</span><br><span class="line">set smartcase		&quot;&quot;&quot;智能大小写</span><br><span class="line"></span><br><span class="line">let mapleader=&quot; &quot;</span><br><span class="line">&quot;&quot;&quot;空格 + ↵ 取消高亮 </span><br><span class="line">noremap &lt;LEADER&gt;&lt;CR&gt; :nohlsearch&lt;CR&gt;</span><br><span class="line"></span><br><span class="line">&quot;&quot;call  plug#begin ( &#x27; ~/.vim/plugged &#x27; )</span><br><span class="line">&quot;&quot;Plug &#x27;connorholyday/vim-snazzy&#x27;</span><br><span class="line">&quot;&quot;Plug &#x27;vim-airline/vim-airline&#x27;</span><br><span class="line"></span><br><span class="line">&quot;&quot;call plug#end()</span><br><span class="line">&quot;&quot;let g:SnazzyTransparent = 1</span><br><span class="line"></span><br><span class="line">&quot;&quot;以下是Plug的配置</span><br><span class="line">call plug#begin(&#x27;~/.vim/plugged&#x27;)</span><br><span class="line"></span><br><span class="line">Plug &#x27;junegunn/vim-easy-align&#x27;</span><br><span class="line">Plug &#x27;connorholyday/vim-snazzy&#x27;</span><br><span class="line">Plug &#x27;vim-airline/vim-airline&#x27;</span><br><span class="line">call plug#end()</span><br><span class="line"></span><br><span class="line">let g:SnazzyTransparent = 1</span><br></pre></td></tr></table></figure></div>
+
+
+
+<h1 id="Vi-vim键盘图"><a href="#Vi-vim键盘图" class="headerlink" title="Vi/vim键盘图"></a>Vi/vim键盘图</h1><p>在最后附上大佬写的键盘图</p>
+<p><img src="https://www.runoob.com/wp-content/uploads/2015/10/vi-vim-cheat-sheet-sch.gif"></p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><blockquote>
+<p>[<a target="_blank" rel="noopener" href="https://space.bilibili.com/13081489/?spm_id_from=333.999.0.0%5D">https://space.bilibili.com/13081489/?spm_id_from=333.999.0.0]</a>:</p>
+</blockquote>
+<blockquote>
+<p>[<a href="http://www.viemu.com]">www.viemu.com]</a>:</p>
+</blockquote>
+<script type="text&#x2F;javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.7.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.7.0/dist/mindmap.min.css">
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/10/17/hello-world/" rel="prev" title="Hello World">
+      <i class="fa fa-chevron-left"></i> Hello World
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2"><span class="nav-number">1.1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-number">1.2.</span> <span class="nav-text">安装</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%84%91%E5%9B%BE"><span class="nav-number">2.</span> <span class="nav-text">脑图</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%BA%E7%83%88%E5%BB%BA%E8%AE%AE%E4%B8%8B%E8%BD%BD%E8%84%91%E5%9B%BE"><span class="nav-number">2.1.</span> <span class="nav-text">强烈建议下载脑图</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E5%8A%A8%E4%BD%9Cmotion"><span class="nav-number">3.</span> <span class="nav-text">常用动作motion</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BE%93%E5%85%A5"><span class="nav-number">3.1.</span> <span class="nav-text">输入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A7%BB%E5%8A%A8"><span class="nav-number">3.2.</span> <span class="nav-text">移动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%A0%E9%99%A4"><span class="nav-number">3.3.</span> <span class="nav-text">删除</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%92%A4%E9%94%80"><span class="nav-number">3.4.</span> <span class="nav-text">撤销</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8B%B7%E8%B4%9D"><span class="nav-number">3.5.</span> <span class="nav-text">拷贝</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%BB%8F%E8%B4%B4"><span class="nav-number">3.6.</span> <span class="nav-text">黏贴</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E6%89%BE"><span class="nav-number">3.6.1.</span> <span class="nav-text">查找</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6vimrc"><span class="nav-number">4.</span> <span class="nav-text">配置文件vimrc</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Vi-vim%E9%94%AE%E7%9B%98%E5%9B%BE"><span class="nav-number">5.</span> <span class="nav-text">Vi&#x2F;vim键盘图</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">6.</span> <span class="nav-text">参考</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Zeke.Chin"
+      src="https://pic.imgdb.cn/item/6182469d2ab3f51d91443e54.jpg">
+  <p class="site-author-name" itemprop="name">Zeke.Chin</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zeke.Chin</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
