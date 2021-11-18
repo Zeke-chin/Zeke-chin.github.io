@@ -12,7 +12,7 @@
 
 <link rel="stylesheet" href="/css/main.css">
 
-
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
 
@@ -21,14 +21,14 @@
     var CONFIG = {"hostname":"zeke-chin.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="前言在日常使用过程中我们经常会用到命令行，如linux中apt的更新或者是macos中homebrew的安装。的确，有很多中科大源、淘宝源等镜像源也是不错的选择。但是谁不想拥有一个沉浸式的命令行体验呢～">
+  <meta name="description" content="前言在日常使用过程中我们经常会用到命令行。如linux中apt的更新或者是macos中homebrew的安装。的确，有很多中科大源、淘宝源等镜像源是让我们安装这些包的不错选择。 但是谁不想拥有一个沉浸式的命令行体验呢～">
 <meta property="og:type" content="article">
-<meta property="og:title" content="命令行走代理">
+<meta property="og:title" content="命令行走代理的两种方法">
 <meta property="og:url" content="http://zeke-chin.github.io/2021/11/18/%E5%91%BD%E4%BB%A4%E8%A1%8C%E8%B5%B0%E4%BB%A3%E7%90%86/index.html">
 <meta property="og:site_name" content="小Z的个人博客">
-<meta property="og:description" content="前言在日常使用过程中我们经常会用到命令行，如linux中apt的更新或者是macos中homebrew的安装。的确，有很多中科大源、淘宝源等镜像源也是不错的选择。但是谁不想拥有一个沉浸式的命令行体验呢～">
+<meta property="og:description" content="前言在日常使用过程中我们经常会用到命令行。如linux中apt的更新或者是macos中homebrew的安装。的确，有很多中科大源、淘宝源等镜像源是让我们安装这些包的不错选择。 但是谁不想拥有一个沉浸式的命令行体验呢～">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://zeke-chin.github.io/Users/zeke/Library/Application%20Support/typora-user-images/image-20211117212807060.png">
+<meta property="og:image" content="https://gitee.com/zekechin/pic/raw/master/image-20211117212807060.png">
 <meta property="og:image" content="https://i.loli.net/2021/11/17/GoIM8YxVb1rl5DS.png">
 <meta property="og:image" content="https://gitee.com/zekechin/pic/raw/master/%E6%88%AA%E5%B1%8F2021-11-17%2023.16.06.png">
 <meta property="og:image" content="https://gitee.com/zekechin/pic/raw/master/image-20211117233615519.png">
@@ -37,10 +37,10 @@
 <meta property="og:image" content="https://gitee.com/zekechin/pic/raw/master/image-20211117233852040.png">
 <meta property="og:image" content="https://gitee.com/zekechin/pic/raw/master/image-20211117234018497.png">
 <meta property="article:published_time" content="2021-11-17T16:31:05.851Z">
-<meta property="article:modified_time" content="2021-11-17T16:42:47.753Z">
+<meta property="article:modified_time" content="2021-11-18T01:49:08.977Z">
 <meta property="article:author" content="Zeke.Chin">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://zeke-chin.github.io/Users/zeke/Library/Application%20Support/typora-user-images/image-20211117212807060.png">
+<meta name="twitter:image" content="https://gitee.com/zekechin/pic/raw/master/image-20211117212807060.png">
 
 <link rel="canonical" href="http://zeke-chin.github.io/2021/11/18/%E5%91%BD%E4%BB%A4%E8%A1%8C%E8%B5%B0%E4%BB%A3%E7%90%86/">
 
@@ -55,7 +55,7 @@
   };
 </script>
 
-  <title>命令行走代理 | 小Z的个人博客</title>
+  <title>命令行走代理的两种方法 | 小Z的个人博客</title>
   
 
 
@@ -188,7 +188,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          命令行走代理
+          命令行走代理的两种方法
         </h1>
 
         <div class="post-meta">
@@ -197,10 +197,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-11-17 16:31:05 / 修改时间：16:42:47" itemprop="dateCreated datePublished" datetime="2021-11-17T16:31:05Z">2021-11-17</time>
+              <time title="创建时间：2021-11-17 16:31:05" itemprop="dateCreated datePublished" datetime="2021-11-17T16:31:05Z">2021-11-17</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-11-18 01:49:08" itemprop="dateModified" datetime="2021-11-18T01:49:08Z">2021-11-18</time>
+              </span>
 
           
 
@@ -213,16 +219,17 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在日常使用过程中我们经常会用到命令行，如linux中apt的更新或者是macos中homebrew的安装。的确，有很多中科大源、淘宝源等镜像源也是不错的选择。但是谁不想拥有一个沉浸式的命令行体验呢～</p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在日常使用过程中我们经常会用到命令行。如linux中apt的更新或者是macos中homebrew的安装。的确，有很多中科大源、淘宝源等镜像源是让我们安装这些包的不错选择。</p>
+<p>但是谁不想拥有一个沉浸式的命令行体验呢～</p>
 <span id="more"></span>
 
 <h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>我们大家会在使用clash等科学上网软件(别问我为什么不说别因为我独宠clash和shadowrocket👀)后会发现可以上Google.com</p>
 <p>但是 依然无法让命令后走代理</p>
 <p>以下提供两种让命令行走代理</p>
-<h1 id="！配置前最重要的一点！"><a href="#！配置前最重要的一点！" class="headerlink" title="！配置前最重要的一点！"></a>！配置前最重要的一点！</h1><p>1、打开代理软件的==全局代理==</p>
-<img src="/Users/zeke/Library/Application Support/typora-user-images/image-20211117212807060.png" alt="image-20211117212807060" style="zoom:50%;" />
+<h1 id="配置前最重要的一点"><a href="#配置前最重要的一点" class="headerlink" title="!配置前最重要的一点!"></a>!配置前最重要的一点!</h1><p>1、打开代理软件的<strong>全局代理</strong></p>
+<img src="https://gitee.com/zekechin/pic/raw/master/image-20211117212807060.png" style="zoom:70%;" />
 
-<p>2、为==GLOBAL==选择节点</p>
+<p>2、为GLOBAL选择节点</p>
 <img src="https://i.loli.net/2021/11/17/GoIM8YxVb1rl5DS.png" style="zoom:50%;" />
 
 <p>然后我们用<code>curl cip.cc</code>来查看ip地址</p>
@@ -234,15 +241,14 @@
 <p><u><em>单次命令行可用每次都必须重新来过</em></u></p>
 </blockquote>
 <h3 id="第一步：查看监听端口号"><a href="#第一步：查看监听端口号" class="headerlink" title="第一步：查看监听端口号"></a><strong>第一步：查看监听端口号</strong></h3><p>比如在我的clash中就是</p>
-<img src="https://gitee.com/zekechin/pic/raw/master/%E6%88%AA%E5%B1%8F2021-11-17%2023.16.06.png" alt="截屏2021-11-17 23.16.06" style="zoom:50%;" />
+<img src="https://gitee.com/zekechin/pic/raw/master/%E6%88%AA%E5%B1%8F2021-11-17%2023.16.06.png"  style="zoom:50%;" />
 
 <ul>
 <li><p>上图是我的端口，那么我就可以用下面的命令来使命令后走代理</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">export</span> <span class="string">https_proxy=http://127.0.0.1:7890</span> <span class="string">http_proxy=http://127.0.0.1:7890</span> <span class="string">all_proxy=socks5://127.0.0.1:7890</span></span><br></pre></td></tr></table></figure></li>
 </ul>
 <h3 id="第二步：代理设置"><a href="#第二步：代理设置" class="headerlink" title="第二步：代理设置"></a><strong>第二步：代理设置</strong></h3><p><code>export http_proxy=http://proxyAddress:port</code></p>
-<p>其中<code>proxyAddress</code>=<code>127.0.0.1</code>基本上是固定是 </p>
-<p>把port改成第一步的端口号就行</p>
+<p>其中<code>proxyAddress</code>=<code>127.0.0.1</code>基本上是固定  把port改成第一步的端口号就行</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">(base)</span> <span class="string">➜</span>  <span class="string">~</span> <span class="string">curl</span> <span class="string">cip.cc</span></span><br><span class="line"><span class="string">IP</span>	<span class="string">:</span> <span class="string">xxx</span></span><br><span class="line"><span class="string">地址</span>	<span class="string">:</span> <span class="string">亚太地区</span>  <span class="string">亚太地区</span></span><br><span class="line"></span><br><span class="line"><span class="string">数据二</span>	<span class="string">:</span> <span class="string">日本</span> <span class="string">|</span> <span class="string">东京rixCloud(TYO01)边缘节点</span></span><br><span class="line"></span><br><span class="line"><span class="string">数据三</span>	<span class="string">:</span> <span class="string">日本东京都东京</span></span><br><span class="line"></span><br><span class="line"><span class="string">URL</span>	<span class="string">:</span> <span class="string">http://www.cip.cc/103.140.136.251</span></span><br></pre></td></tr></table></figure>
 
 
@@ -255,13 +261,13 @@
 <h3 id="第一步：查看本机shll"><a href="#第一步：查看本机shll" class="headerlink" title="第一步：查看本机shll"></a><strong>第一步：查看本机shll</strong></h3><p>系统偏好设置&gt;用户与群组&gt;左下角解🔒&gt;按住<code>control</code>+单击管理员👇选择高级选项&gt;登陆shell</p>
 <img src="https://gitee.com/zekechin/pic/raw/master/image-20211117233615519.png"  style="zoom:40%;" />
 
-<img src="https://gitee.com/zekechin/pic/raw/master/image-20211117233659102.png" alt="image-20211117233659102" style="zoom:40%;" />
+<img src="https://gitee.com/zekechin/pic/raw/master/image-20211117233659102.png"  style="zoom:40%;" />
 
-<img src="https://gitee.com/zekechin/pic/raw/master/image-20211117233745738.png" alt="image-20211117233745738" style="zoom:40%;" />
+<img src="https://gitee.com/zekechin/pic/raw/master/image-20211117233745738.png"  style="zoom:40%;" />
 
-<img src="https://gitee.com/zekechin/pic/raw/master/image-20211117233852040.png" alt="image-20211117233852040" style="zoom:40%;" />
+<img src="https://gitee.com/zekechin/pic/raw/master/image-20211117233852040.png"  style="zoom:40%;" />
 
-<img src="https://gitee.com/zekechin/pic/raw/master/image-20211117234018497.png" alt="image-20211117234018497" style="zoom:44%;" />
+<img src="https://gitee.com/zekechin/pic/raw/master/image-20211117234018497.png"  style="zoom:44%;" />
 
 
 
@@ -275,7 +281,7 @@
 <p>2.在文件末尾添加配置文件</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># proxy</span></span><br><span class="line"></span><br><span class="line"><span class="string">alias</span> <span class="string">proxyon=&#x27;export</span> <span class="string">https_proxy=http://127.0.0.1:7890</span> <span class="string">http_proxy=http://127.0.0.1:7890</span> <span class="string">all_proxy=socks5://127.0.0.1:7890&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="string">alias</span> <span class="string">proxyoff=&#x27;unset</span> <span class="string">https_proxy</span> <span class="string">http_proxy</span> <span class="string">all_proxy&#x27;</span></span><br></pre></td></tr></table></figure>
 
-<p>==(注意修改端口号)==</p>
+<p><strong>注意修改端口号</strong></p>
 <p>3.使配置生效</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source ~/.bash_profile</span><br></pre></td></tr></table></figure></li>
 </ul>
@@ -287,7 +293,7 @@
 <p>2.在文件末尾添加配置文件</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># proxy</span></span><br><span class="line"></span><br><span class="line"><span class="string">alias</span> <span class="string">proxyon=&#x27;export</span> <span class="string">https_proxy=http://127.0.0.1:7890</span> <span class="string">http_proxy=http://127.0.0.1:7890</span> <span class="string">all_proxy=socks5://127.0.0.1:7890&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="string">alias</span> <span class="string">proxyoff=&#x27;unset</span> <span class="string">https_proxy</span> <span class="string">http_proxy</span> <span class="string">all_proxy&#x27;</span></span><br></pre></td></tr></table></figure>
 
-<p>==(注意修改端口号)==</p>
+<p><strong>注意修改端口号</strong></p>
 <p>3.使配置生效</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">source</span> <span class="string">~/.zshrc</span></span><br></pre></td></tr></table></figure></li>
 </ul>
@@ -387,7 +393,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2"><span class="nav-number">2.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%EF%BC%81%E9%85%8D%E7%BD%AE%E5%89%8D%E6%9C%80%E9%87%8D%E8%A6%81%E7%9A%84%E4%B8%80%E7%82%B9%EF%BC%81"><span class="nav-number">3.</span> <span class="nav-text">！配置前最重要的一点！</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E7%A7%8D%EF%BC%9A%E5%8D%95%E6%AC%A1%E9%85%8D%E7%BD%AE"><span class="nav-number">3.1.</span> <span class="nav-text">第一种：单次配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%9A%E6%9F%A5%E7%9C%8B%E7%9B%91%E5%90%AC%E7%AB%AF%E5%8F%A3%E5%8F%B7"><span class="nav-number">3.1.1.</span> <span class="nav-text">第一步：查看监听端口号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%9A%E4%BB%A3%E7%90%86%E8%AE%BE%E7%BD%AE"><span class="nav-number">3.1.2.</span> <span class="nav-text">第二步：代理设置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E7%A7%8D%EF%BC%9A%E9%80%9A%E8%BF%87%E8%AE%BE%E7%BD%AEalias%E6%9D%A5%E7%AE%80%E5%8C%96%E6%93%8D%E4%BD%9C"><span class="nav-number">3.2.</span> <span class="nav-text">第二种：通过设置alias来简化操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%9A%E6%9F%A5%E7%9C%8B%E6%9C%AC%E6%9C%BAshll"><span class="nav-number">3.2.1.</span> <span class="nav-text">第一步：查看本机shll</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%9A%E6%8A%8A%E9%85%8D%E7%BD%AE%E5%86%99%E5%85%A5%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">3.2.2.</span> <span class="nav-text">第二步：把配置写入配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%9A%E5%AE%9E%E4%BE%8B%E6%BC%94%E7%A4%BA"><span class="nav-number">3.2.3.</span> <span class="nav-text">第三步：实例演示</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E4%BB%A3%E7%90%86%E8%AE%BE%E7%BD%AE"><span class="nav-number">4.</span> <span class="nav-text">其他代理设置</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2"><span class="nav-number">2.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E5%89%8D%E6%9C%80%E9%87%8D%E8%A6%81%E7%9A%84%E4%B8%80%E7%82%B9"><span class="nav-number">3.</span> <span class="nav-text">!配置前最重要的一点!</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E7%A7%8D%EF%BC%9A%E5%8D%95%E6%AC%A1%E9%85%8D%E7%BD%AE"><span class="nav-number">3.1.</span> <span class="nav-text">第一种：单次配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%9A%E6%9F%A5%E7%9C%8B%E7%9B%91%E5%90%AC%E7%AB%AF%E5%8F%A3%E5%8F%B7"><span class="nav-number">3.1.1.</span> <span class="nav-text">第一步：查看监听端口号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%9A%E4%BB%A3%E7%90%86%E8%AE%BE%E7%BD%AE"><span class="nav-number">3.1.2.</span> <span class="nav-text">第二步：代理设置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E7%A7%8D%EF%BC%9A%E9%80%9A%E8%BF%87%E8%AE%BE%E7%BD%AEalias%E6%9D%A5%E7%AE%80%E5%8C%96%E6%93%8D%E4%BD%9C"><span class="nav-number">3.2.</span> <span class="nav-text">第二种：通过设置alias来简化操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%9A%E6%9F%A5%E7%9C%8B%E6%9C%AC%E6%9C%BAshll"><span class="nav-number">3.2.1.</span> <span class="nav-text">第一步：查看本机shll</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%9A%E6%8A%8A%E9%85%8D%E7%BD%AE%E5%86%99%E5%85%A5%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">3.2.2.</span> <span class="nav-text">第二步：把配置写入配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%9A%E5%AE%9E%E4%BE%8B%E6%BC%94%E7%A4%BA"><span class="nav-number">3.2.3.</span> <span class="nav-text">第三步：实例演示</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E4%BB%A3%E7%90%86%E8%AE%BE%E7%BD%AE"><span class="nav-number">4.</span> <span class="nav-text">其他代理设置</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
