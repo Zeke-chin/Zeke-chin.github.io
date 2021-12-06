@@ -24,19 +24,21 @@
   <meta name="description" content="基础Linux   cd                目录 pwd             位置 ls                  列表 rm                删除文件 touch           新建文件 rm -r.           删除文件夹 mkidr.         新建文件夹 history        历史命令   rm -rf &#x2F;   git配置">
 <meta property="og:type" content="website">
 <meta property="og:title" content="小Z的个人博客">
-<meta property="og:url" content="http://zeke-chin.github.io/posts_lib/git.html">
+<meta property="og:url" content="http://zeke-chin.github.io/md_lib/git.html">
 <meta property="og:site_name" content="小Z的个人博客">
 <meta property="og:description" content="基础Linux   cd                目录 pwd             位置 ls                  列表 rm                删除文件 touch           新建文件 rm -r.           删除文件夹 mkidr.         新建文件夹 history        历史命令   rm -rf &#x2F;   git配置">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://zeke-chin.github.io/Users/zeke/Library/Application%20Support/typora-user-images/image-20211201162904133.png">
 <meta property="og:image" content="http://zeke-chin.github.io/Users/zeke/Library/Application%20Support/typora-user-images/image-20211201163540682.png">
-<meta property="article:published_time" content="2021-12-05T10:09:47.095Z">
-<meta property="article:modified_time" content="2021-12-01T09:22:06.384Z">
+<meta property="og:image" content="https://gitee.com/zekechin/pic/raw/master/img/image-20211206130032070.png">
+<meta property="og:image" content="https://gitee.com/zekechin/pic/raw/master/img/image-20211206130059249.png">
+<meta property="article:published_time" content="2021-12-06T06:38:29.457Z">
+<meta property="article:modified_time" content="2021-12-06T05:03:59.352Z">
 <meta property="article:author" content="Zeke.Chin">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://zeke-chin.github.io/Users/zeke/Library/Application%20Support/typora-user-images/image-20211201162904133.png">
 
-<link rel="canonical" href="http://zeke-chin.github.io/posts_lib/git">
+<link rel="canonical" href="http://zeke-chin.github.io/md_lib/git">
 
 
 <script id="page-configurations">
@@ -211,14 +213,24 @@
 <li><p>git config -l    全部配置</p>
 </li>
 <li><p>git config –system –list    系统配置</p>
+<ul>
+<li>可能你的mac可能自己已经有了git这是是来自Xcode的gti一般位于<code>/usr/bin/git</code></li>
+<li>但是我们更推荐用homebrew下载的git一般位于<code>/opt/homebrew/bin/git</code></li>
+<li>可以用<code>alias git=&quot;/opt/homebrew/bin/git&quot;    </code>来更改所使用的git</li>
+</ul>
 </li>
 <li><p>git config –global –list       用户配置</p>
 <ul>
-<li><strong>git config –global user.name “zeke-chin” #名称</strong></li>
-<li><strong>git config –global user.email “<a href="mailto:&#50;&#x35;&#56;&#x37;&#x38;&#53;&#52;&#51;&#x35;&#x33;&#x40;&#x71;&#113;&#x2e;&#x63;&#x6f;&#x6d;">&#50;&#x35;&#56;&#x37;&#x38;&#53;&#52;&#51;&#x35;&#x33;&#x40;&#x71;&#113;&#x2e;&#x63;&#x6f;&#x6d;</a>“ #邮箱</strong></li>
+<li><p>设置(系统级别)签名</p>
+<ul>
+<li><strong>git config –global user.name “zeke-chin”    #名称</strong></li>
+<li><strong>git config –global user.email “<a href="mailto:&#x32;&#53;&#56;&#x37;&#56;&#53;&#52;&#x33;&#53;&#x33;&#x40;&#x71;&#113;&#x2e;&#x63;&#x6f;&#109;">&#x32;&#53;&#56;&#x37;&#56;&#53;&#52;&#x33;&#53;&#x33;&#x40;&#x71;&#113;&#x2e;&#x63;&#x6f;&#109;</a>“    #邮箱</strong></li>
 </ul>
 </li>
-<li><p>Mac更改使用brew的git-&gt;<code>alias git=&quot;/opt/homebrew/bin/git&quot;    </code></p>
+<li><p>设置ssh</p>
+</li>
+<li></li>
+</ul>
 </li>
 </ul>
 <blockquote>
@@ -292,6 +304,8 @@
 </ul>
 </li>
 </ul>
+<p><img src="https://gitee.com/zekechin/pic/raw/master/img/image-20211206130032070.png" alt="image-20211206130032070"></p>
+<p><img src="https://gitee.com/zekechin/pic/raw/master/img/image-20211206130059249.png" alt="image-20211206130059249"></p>
 <script type="text&#x2F;javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.7.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.7.0/dist/mindmap.min.css">
       </div>
       
@@ -368,7 +382,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-count">5</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

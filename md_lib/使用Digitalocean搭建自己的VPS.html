@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"zeke-chin.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="前言使用海外VPS服务器来搭建科学上网节点 是一种相对安全的科学上网方法 本文将采用Xray的强大回落功能来部署—全协议（Trojan,VLESS,Vmess）同时连接">
+<meta property="og:type" content="website">
+<meta property="og:title" content="搭建科学上网节点">
+<meta property="og:url" content="http://zeke-chin.github.io/md_lib/%E4%BD%BF%E7%94%A8Digitalocean%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84VPS.html">
+<meta property="og:site_name" content="小Z的个人博客">
+<meta property="og:description" content="前言使用海外VPS服务器来搭建科学上网节点 是一种相对安全的科学上网方法 本文将采用Xray的强大回落功能来部署—全协议（Trojan,VLESS,Vmess）同时连接">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s6.jpg.cm/2021/11/18/IDJke4.png">
+<meta property="og:image" content="https://gitee.com/zekechin/pic/raw/master/Pasted Graphic.png">
+<meta property="og:image" content="https://s6.jpg.cm/2021/11/18/IDtYNL.png">
+<meta property="og:image" content="https://s6.jpg.cm/2021/11/18/IDtmD8.png">
+<meta property="og:image" content="https://s6.jpg.cm/2021/11/18/IDtB5y.png">
+<meta property="og:image" content="https://s6.jpg.cm/2021/11/18/IDtZMQ.png">
+<meta property="og:image" content="http://zeke-chin.github.io/Users/zeke/Library/Application%20Support/typora-user-images/image-20211118172258703.png">
+<meta property="og:image" content="https://s6.jpg.cm/2021/11/18/IDFQuy.png">
+<meta property="og:image" content="https://s6.jpg.cm/2021/11/18/IDFVmt.png">
+<meta property="og:image" content="https://s6.jpg.cm/2021/11/18/IDFUCG.png">
+<meta property="og:image" content="https://s6.jpg.cm/2021/11/18/IDFvfH.png">
+<meta property="og:image" content="https://s6.jpg.cm/2021/11/18/IDFfTO.png">
+<meta property="og:image" content="https://s6.jpg.cm/2021/11/18/IDF0r8.png">
+<meta property="og:image" content="https://s6.jpg.cm/2021/11/18/IDFhfy.png">
+<meta property="og:image" content="https://s6.jpg.cm/2021/11/18/IDkotG.png">
+<meta property="og:image" content="https://s6.jpg.cm/2021/11/18/IDFjZr.png">
+<meta property="og:image" content="https://s6.jpg.cm/2021/11/18/IDFTpC.png">
+<meta property="og:image" content="https://s6.jpg.cm/2021/11/18/IDFxeR.png">
+<meta property="og:image" content="https://s6.jpg.cm/2021/11/18/IDFMKu.png">
+<meta property="og:image" content="https://s6.jpg.cm/2021/11/18/IDFZWG.png">
+<meta property="og:image" content="https://s6.jpg.cm/2021/11/18/IDpn3h.png">
+<meta property="article:published_time" content="2021-12-06T13:20:20.977Z">
+<meta property="article:modified_time" content="2021-12-06T13:20:20.968Z">
+<meta property="article:author" content="Zeke.Chin">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s6.jpg.cm/2021/11/18/IDJke4.png">
+
+<link rel="canonical" href="http://zeke-chin.github.io/md_lib/%E4%BD%BF%E7%94%A8Digitalocean%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84VPS">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : false,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>搭建科学上网节点 | 小Z的个人博客
+</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">小Z的个人博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">与无声中听惊雷</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="user fa-fw"></i>关于</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+  
+  
+
+          <div class="content page posts-expand">
+            
+
+    
+    
+    
+    <div class="post-block" lang="zh-CN">
+      <header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">搭建科学上网节点
+</h1>
+
+<div class="post-meta">
+  
+
+</div>
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>使用海外VPS服务器来搭建科学上网节点</p>
+<p>是一种相对安全的科学上网方法</p>
+<p>本文将采用Xray的强大回落功能来部署—全协议（Trojan,VLESS,Vmess）同时连接</p>
+<span id="more"></span>
+
+<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>由于搭建科学上网节点是一个略微麻烦的过程所以我分为了两个部分来介绍</p>
+<p>本文侧重域名注册和xray使用若没有自己VPS的可自行Google</p>
+<ol>
+<li><a href="#jump1">注册域名和DNS解析</a></li>
+<li><a href="#jump2">xray搭建</a></li>
+<li><a href="#jump3">Trijan转clash</a></li>
+</ol>
+<h1 id="注册域名和DNS解析"><a href="#注册域名和DNS解析" class="headerlink" title="注册域名和DNS解析"></a><span id = "jump1" >注册域名和DNS解析</span></h1><h2 id="第一步：注册域名"><a href="#第一步：注册域名" class="headerlink" title="第一步：注册域名"></a>第一步：注册域名</h2><p><strong>这里为新手提供一个无成本域名<a target="_blank" rel="noopener" href="https://www.freenom.com/">注册网站freenom</a></strong></p>
+<p>在此提醒如果你想靠网站盈利或者获得更高的点击率被搜索引擎收录请购买付费.com域名</p>
+<ul>
+<li><p>查询网站是否可用</p>
+<img src="https://s6.jpg.cm/2021/11/18/IDJke4.png"  style="zoom:30%;" />
+
+<img src="https://gitee.com/zekechin/pic/raw/master/Pasted Graphic.png" style="zoom:30%;" /></li>
+<li><p>购买域名</p>
+<p>小知识点这个免费的域名如果没有人购买的话是可以使用的的 但是一旦有人购买你就会失去所有权</p>
+<table>
+<thead>
+<tr>
+<th align="center">托克拉</th>
+<th align="center">马里共和国</th>
+<th align="center">加蓬共和国</th>
+<th align="center">中非共和国</th>
+<th align="center">赤道几内亚</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">tk</td>
+<td align="center">ml</td>
+<td align="center">ga</td>
+<td align="center">cf</td>
+<td align="center">gq</td>
+</tr>
+</tbody></table>
+<img src="https://s6.jpg.cm/2021/11/18/IDtYNL.png" alt="IDtmD8.png" style="zoom:20%;" />
+
+
+
+<img src="https://s6.jpg.cm/2021/11/18/IDtmD8.png" alt="IDtmD8.png" style="zoom:30%;" />
+
+<img src="https://s6.jpg.cm/2021/11/18/IDtB5y.png" alt="IDtB5y.png" style="zoom:33%;" /></li>
+</ul>
+<img src="https://s6.jpg.cm/2021/11/18/IDtZMQ.png" alt="IDtZMQ.png" style="zoom:30%;" />
+
+<img src="/Users/zeke/Library/Application Support/typora-user-images/image-20211118172258703.png" alt="image-20211118172258703" style="zoom:33%;" />
+
+<p>到这里就算是购买成功了 可以点击转到客户区或者</p>
+<p>Services&gt;My Domanis&gt;Manage Domain⚙️&gt;Management Tools&gt;</p>
+<p>Nameservers&gt;<strong>Use custom nameservers (enter below)</strong></p>
+<ul>
+<li><p>解析dns</p>
+<p>这里我们用到的是<a target="_blank" rel="noopener" href="https://www.cloudflare.com/">Cloudflare</a>这是一家是一家总部位于旧金山的美国跨国科技企业，以向客户提供基于反向代理的内容分发网络及分布式域名解析服务为主要业务。</p>
+<p>是最好用的国外最好的免费CDN服务商</p>
+<p>这个注册很简单 这里不再赘述    </p>
+<img src="https://s6.jpg.cm/2021/11/18/IDFQuy.png" alt="IDFQuy.png" style="zoom:40%;" />
+
+<img src="https://s6.jpg.cm/2021/11/18/IDFVmt.png" alt="IDFVmt.png" style="zoom:33%;" />
+
+<img src="https://s6.jpg.cm/2021/11/18/IDFUCG.png" alt="IDFUCG.png" style="zoom:30%;" />
+
+
+
+<ul>
+<li><p>Use custom nameservers (enter below)</p>
+<img src="https://s6.jpg.cm/2021/11/18/IDFvfH.png" alt="IDFvfH.png" style="zoom:30%;" /></li>
+</ul>
+</li>
+</ul>
+<img src="https://s6.jpg.cm/2021/11/18/IDFfTO.png" alt="IDFfTO.png" style="zoom:25%;" />
+
+<img src="https://s6.jpg.cm/2021/11/18/IDF0r8.png" alt="IDF0r8.png" style="zoom:25%;" />
+
+<img src="https://s6.jpg.cm/2021/11/18/IDFhfy.png" alt="IDFhfy.png" style="zoom:25%;" />
+
+<img src="https://s6.jpg.cm/2021/11/18/IDkotG.png" alt="IDkotG.png" style="zoom:33%;" />
+
+<p>​            接下来就可以ping一下刚刚的Vps和ip地址看看通不通</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">(base)</span> <span class="string">➜</span>  <span class="string">~</span> <span class="string">ping</span> <span class="number">104.131</span><span class="number">.115</span><span class="number">.151</span></span><br><span class="line"><span class="string">PING</span> <span class="number">104.131</span><span class="number">.115</span><span class="number">.151</span> <span class="string">(104.131.115.151):</span> <span class="number">56</span> <span class="string">data</span> <span class="string">bytes</span></span><br><span class="line"><span class="string">Request</span> <span class="string">timeout</span> <span class="string">for</span> <span class="string">icmp_seq</span> <span class="number">0</span></span><br><span class="line"><span class="string">Request</span> <span class="string">timeout</span> <span class="string">for</span> <span class="string">icmp_seq</span> <span class="number">1</span></span><br><span class="line"><span class="attr">64 bytes from 104.131.115.151:</span> <span class="string">icmp_seq=2</span> <span class="string">ttl=44</span> <span class="string">time=289.484</span> <span class="string">ms</span></span><br><span class="line"><span class="string">Request</span> <span class="string">timeout</span> <span class="string">for</span> <span class="string">icmp_seq</span> <span class="number">3</span></span><br><span class="line"><span class="attr">64 bytes from 104.131.115.151:</span> <span class="string">icmp_seq=4</span> <span class="string">ttl=44</span> <span class="string">time=292.642</span> <span class="string">ms</span></span><br><span class="line"><span class="attr">64 bytes from 104.131.115.151:</span> <span class="string">icmp_seq=5</span> <span class="string">ttl=44</span> <span class="string">time=289.313</span> <span class="string">ms</span></span><br><span class="line"><span class="string">Request</span> <span class="string">timeout</span> <span class="string">for</span> <span class="string">icmp_seq</span> <span class="number">6</span></span><br><span class="line"><span class="string">^Z</span></span><br><span class="line">[<span class="number">2</span>]  <span class="string">+</span> <span class="number">16471</span> <span class="string">suspended</span>  <span class="string">ping</span> <span class="number">104.131</span><span class="number">.115</span><span class="number">.151</span></span><br><span class="line"><span class="string">(base)</span> <span class="string">➜</span>  <span class="string">~</span> <span class="string">ping</span> <span class="string">frisco.zeketest.tk</span></span><br><span class="line"><span class="string">PING</span> <span class="string">frisco.zeketest.tk</span> <span class="string">(104.131.115.151):</span> <span class="number">56</span> <span class="string">data</span> <span class="string">bytes</span></span><br><span class="line"><span class="attr">64 bytes from 104.131.115.151:</span> <span class="string">icmp_seq=0</span> <span class="string">ttl=44</span> <span class="string">time=290.568</span> <span class="string">ms</span></span><br><span class="line"><span class="attr">64 bytes from 104.131.115.151:</span> <span class="string">icmp_seq=1</span> <span class="string">ttl=44</span> <span class="string">time=292.002</span> <span class="string">ms</span></span><br><span class="line"><span class="string">Request</span> <span class="string">timeout</span> <span class="string">for</span> <span class="string">icmp_seq</span> <span class="number">2</span></span><br><span class="line"><span class="string">Request</span> <span class="string">timeout</span> <span class="string">for</span> <span class="string">icmp_seq</span> <span class="number">3</span></span><br><span class="line"><span class="attr">64 bytes from 104.131.115.151:</span> <span class="string">icmp_seq=4</span> <span class="string">ttl=44</span> <span class="string">time=288.962</span> <span class="string">ms</span></span><br><span class="line"><span class="string">^Z</span></span><br><span class="line">[<span class="number">3</span>]  <span class="string">+</span> <span class="number">16477</span> <span class="string">suspended</span>  <span class="string">ping</span> <span class="string">frisco.zeketest.tk</span></span><br></pre></td></tr></table></figure>
+
+<p>可以看出是是已经通了的那么就可以进入第二步</p>
+<h1 id="第二步：Xray搭建"><a href="#第二步：Xray搭建" class="headerlink" title="第二步：Xray搭建"></a>第二步：<span id = "jump2" >Xray搭建</span></h1><ul>
+<li>服务器简单搭建</li>
+</ul>
+<p><img src="https://s6.jpg.cm/2021/11/18/IDFjZr.png" alt="IDFjZr.png"></p>
+<p><img src="https://s6.jpg.cm/2021/11/18/IDFTpC.png" alt="IDFTpC.png"></p>
+<p><img src="https://s6.jpg.cm/2021/11/18/IDFxeR.png" alt="IDFxeR.png"></p>
+<p><img src="https://s6.jpg.cm/2021/11/18/IDFMKu.png" alt="IDFMKu.png"></p>
+<p><img src="https://s6.jpg.cm/2021/11/18/IDFZWG.png" alt="IDFZWG.png"></p>
+<ul>
+<li><p><span id = "jump4">xray安装脚本</span></p>
+<ul>
+<li><p>这里使用的呢是一个一键脚本</p>
+</li>
+<li><p>可能不如用官方内核+自己申请证书稳定、安全但是好在对新手友好🐶</p>
+<ul>
+<li><p>在应用脚本之前先更新软件包</p>
+<ul>
+<li><p>CentOS</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum install epel-release -y</span><br><span class="line">yum update -y</span><br></pre></td></tr></table></figure></li>
+<li><p>Debin/Ununt</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#Debin</span><br><span class="line">apt update -y </span><br><span class="line">#Ubuntu</span><br><span class="line">apt update</span><br><span class="line">apt upgrade</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>安装一键傻瓜脚本🤪</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br></pre></td><td class="code"><pre><span class="line">============================================================== </span><br><span class="line">作者：mack-a </span><br><span class="line">当前版本：v2.5.41 </span><br><span class="line">Github：https://github.com/mack-a/v2ray-agent </span><br><span class="line">描述：八合一共存脚本</span><br><span class="line">============================================================== </span><br><span class="line">1.安装 </span><br><span class="line">2.任意组合安装 </span><br><span class="line">-------------------------工具管理----------------------------- </span><br><span class="line">4.账号管理 </span><br><span class="line">5.更换伪装站 </span><br><span class="line">6.更新证书 </span><br><span class="line">7.更换CDN节点 </span><br><span class="line">8.IPv6分流 </span><br><span class="line">9.WARP分流 </span><br><span class="line">10.流媒体工具 </span><br><span class="line">11.添加新端口 </span><br><span class="line">12.BT下载管理 </span><br><span class="line">13.切换alpn </span><br><span class="line">-------------------------版本管理----------------------------- </span><br><span class="line">14.core管理 </span><br><span class="line">15.更新脚本 </span><br><span class="line">16.安装BBR、DD脚本 </span><br><span class="line">-------------------------脚本管理----------------------------- </span><br><span class="line">17.查看日志 </span><br><span class="line">18.卸载脚本 </span><br><span class="line">============================================================== </span><br><span class="line">请选择:1</span><br><span class="line"></span><br><span class="line">功能 1/1 : 选择核心安装 </span><br><span class="line"></span><br><span class="line">============================================================== </span><br><span class="line">1.Xray-core </span><br><span class="line">2.v2ray-core </span><br><span class="line">============================================================== </span><br><span class="line">请选择:1</span><br><span class="line">安装工具</span><br><span class="line"></span><br><span class="line">进度  2/13 : 安装工具 </span><br><span class="line"> ---&gt; 检查、安装更新【新机器会很慢，如长时间无反应，请手动停止后重新执行】 </span><br><span class="line"> ---&gt; 安装unzip </span><br><span class="line"> ---&gt; 安装socat </span><br><span class="line"> ---&gt; 安装jq </span><br><span class="line"> ---&gt; 安装binutils </span><br><span class="line"> ---&gt; 安装ping6 </span><br><span class="line"> ---&gt; 安装qrencode </span><br><span class="line"> ---&gt; 安装lsb-release </span><br><span class="line"> ---&gt; 安装nginx </span><br><span class="line">Synchronizing state of nginx.service with SysV service script with /lib/systemd/systemd-sysv-install.</span><br><span class="line">Executing: /lib/systemd/systemd-sysv-install <span class="built_in">enable</span> nginx</span><br><span class="line"> ---&gt; 安装semanage </span><br><span class="line"></span><br><span class="line">进度  3/13 : 初始化Nginx申请证书配置 </span><br><span class="line"></span><br><span class="line">请输入要配置的域名 例：www.v2ray-agent.com ---&gt; </span><br><span class="line">域名:xray.zekechin.tk</span><br><span class="line"></span><br><span class="line"> ---&gt; 检查域名ip中 </span><br><span class="line"> ---&gt; 当前域名ip为：[52.231.29.99] </span><br><span class="line"></span><br><span class="line">进度  4/13 : 申请TLS证书</span><br><span class="line"> </span><br><span class="line"> ---&gt; 安装TLS证书 </span><br><span class="line"> ---&gt; TLS生成成功 </span><br><span class="line"></span><br><span class="line">进度  5/13 : 生成随机路径 </span><br><span class="line">请输入自定义路径[例: alone]，不需要斜杠，[回车]随机路径 </span><br><span class="line">路径:</span><br><span class="line"></span><br><span class="line"> path：juwu </span><br><span class="line"></span><br><span class="line">---------------------------- </span><br><span class="line"></span><br><span class="line">进度  6/13 : 安装Xray </span><br><span class="line"> ---&gt; Xray-core版本:v1.5.0 </span><br><span class="line">Xray-linux-64.zip              100%[===================================================&gt;]   9.05M  5.63MB/s    <span class="keyword">in</span> 1.6s    </span><br><span class="line"></span><br><span class="line">进度  7/13 : 配置Xray开机自启 </span><br><span class="line">Created symlink /etc/systemd/system/multi-user.target.wants/xray.service → /etc/systemd/system/xray.service.</span><br><span class="line"> ---&gt; 配置Xray开机自启成功 </span><br><span class="line"></span><br><span class="line">进度 8/13 : 添加cloudflare自选CNAME </span><br><span class="line"></span><br><span class="line">============================================================== </span><br><span class="line"><span class="comment"># 注意事项 </span></span><br><span class="line"></span><br><span class="line">教程地址: </span><br><span class="line">https://github.com/mack-a/v2ray-agent/blob/master/documents/optimize_V2Ray.md </span><br><span class="line"></span><br><span class="line">如对Cloudflare优化不了解，请不要使用 </span><br><span class="line"></span><br><span class="line"> 1.移动:104.16.123.96 </span><br><span class="line"> 2.联通:www.cloudflare.com </span><br><span class="line"> 3.电信:www.digitalocean.com </span><br><span class="line">---------------------------- </span><br><span class="line">请选择[回车不使用]:2</span><br><span class="line"></span><br><span class="line">进度 9/13 : 初始化Xray配置 </span><br><span class="line"></span><br><span class="line">请输入自定义UUID[需合法]，[回车]随机UUID </span><br><span class="line">UUID:</span><br><span class="line"></span><br><span class="line"> b0da719b-de78-4c38-90cb-58c5101ceaee </span><br><span class="line"></span><br><span class="line">进度 10/13 : 添加定时维护证书 </span><br><span class="line"></span><br><span class="line"> ---&gt; 添加定时维护证书成功 </span><br><span class="line"></span><br><span class="line">进度 11/13 : 添加伪装站点 </span><br><span class="line"> ---&gt; 添加伪装站点成功 </span><br><span class="line"> ---&gt; Xray关闭成功 </span><br><span class="line"> ---&gt; Xray启动成功 </span><br><span class="line"></span><br><span class="line">进度 12/13 : 验证服务启动状态 </span><br><span class="line"> ---&gt; 服务启动成功 </span><br><span class="line"></span><br><span class="line">进度 13/13 : 账号 </span><br><span class="line">===================== VLESS TCP TLS/XTLS-direct/XTLS-splice ======================</span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"> ---&gt; 帐号：xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx </span><br></pre></td></tr></table></figure></li>
+<li><p>脚本支持</p>
+<ul>
+<li>VLESS+TCP+TLS</li>
+<li>VLESS+TCP+xtls-rprx-direct【<strong>推荐</strong>】</li>
+<li>VLESS+gRPC+TLS【支持CDN、IPv6、延迟低】</li>
+<li>VLESS+WS+TLS【支持CDN、IPv6】</li>
+<li>Trojan+TCP+TLS【<strong>推荐</strong>】</li>
+<li>Trojan+TCP+xtls-rprx-direct【<strong>推荐</strong>】</li>
+<li>Trojan+gRPC+TLS【支持CDN、IPv6、延迟低】</li>
+<li>VMess+WS+TLS【支持CDN、IPv6】</li>
+</ul>
+</li>
+<li><p>而我们本拿出trojan即可</p>
+<ul>
+<li>其他的协议可自行研究</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>#第三步： <span id = "jump3">Trojan转clash</span></p>
+<ul>
+<li><p>解压上文trojan-cli.zip文件</p>
+</li>
+<li><p>进入usr/src/trojan-cli用命令行打开</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line"> 2     &quot;run_type&quot;: &quot;client&quot;,</span><br><span class="line"> 3     &quot;local_addr&quot;: &quot;127.0.0.1&quot;,</span><br><span class="line"> 4     &quot;local_port&quot;: 1080,</span><br><span class="line"> 5     &quot;remote_addr&quot;: &quot;frisco.zeketest.tk&quot;,</span><br><span class="line"> 6     &quot;remote_port&quot;: 443,</span><br><span class="line"> 7     &quot;password&quot;: [</span><br><span class="line"> 8         &quot;XXXXXXXX&quot;</span><br><span class="line"> 9     ],</span><br><span class="line">10     &quot;log_level&quot;: 1,</span><br><span class="line">11     &quot;ssl&quot;: &#123;</span><br><span class="line">12         &quot;verify&quot;: true,</span><br><span class="line">13         &quot;verify_hostname&quot;: true,</span><br><span class="line">14         &quot;cert&quot;: &quot;fullchain.cer&quot;,</span><br><span class="line">15         &quot;cipher_tls13&quot;:&quot;TLS_AES_128_GCM_SHA256:TLS_CHACHA20_POLY1305_SHA256:    TLS_AES_256_GCM_SHA384&quot;,</span><br><span class="line">16 &quot;sni&quot;: &quot;&quot;,</span><br><span class="line">17         &quot;alpn&quot;: [</span><br><span class="line">18             &quot;h2&quot;,</span><br><span class="line">19             &quot;http/1.1&quot;</span><br><span class="line">20         ],</span><br><span class="line">21         &quot;reuse_session&quot;: true,</span><br><span class="line">22         &quot;session_ticket&quot;: false,</span><br></pre></td></tr></table></figure></li>
+<li><p>获得<code>&quot;remote_addr&quot;</code>  <code>&quot;remote_port&quot;</code>  <code>&quot;password&quot;</code>字符</p>
+<p>再将字符组成<code>trojan://password@remote_addr:remote_port?peer=#name</code></p>
+<p>我的配置就是<code>trojan://XXXXXXXX@frisco.zeketest.tk:443?peer=#旧金山</code></p>
+</li>
+<li><p>然后进入<a target="_blank" rel="noopener" href="https://sub.dler.io/">🔗clash转换地址</a></p>
+<img src="https://s6.jpg.cm/2021/11/18/IDpn3h.png" alt="IDpn3h.png" style="zoom:50%;" /></li>
+</ul>
+<pre><code>    &lt;/details&gt;
+</code></pre>
+<ul>
+<li>OVER</li>
+</ul>
+<script type="text&#x2F;javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.7.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.7.0/dist/mindmap.min.css">
+      </div>
+      
+      
+      
+    </div>
+    
+
+    
+    
+    
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2"><span class="nav-number">1.1.</span> <span class="nav-text">写在前面</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B3%A8%E5%86%8C%E5%9F%9F%E5%90%8D%E5%92%8CDNS%E8%A7%A3%E6%9E%90"><span class="nav-number">2.</span> <span class="nav-text">注册域名和DNS解析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%9A%E6%B3%A8%E5%86%8C%E5%9F%9F%E5%90%8D"><span class="nav-number">2.1.</span> <span class="nav-text">第一步：注册域名</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%9AXray%E6%90%AD%E5%BB%BA"><span class="nav-number">3.</span> <span class="nav-text">第二步：Xray搭建</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Zeke.Chin"
+      src="https://pic.imgdb.cn/item/6182469d2ab3f51d91443e54.jpg">
+  <p class="site-author-name" itemprop="name">Zeke.Chin</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zeke.Chin</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
+
