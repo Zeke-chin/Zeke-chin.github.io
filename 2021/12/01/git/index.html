@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"zeke-chin.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="前言gti是一个由Linus Torvalds大神用10天时间开发的 开源的 世界上最好用的版本管理工具[doge] 本文仅针对Linux&#x2F;Unix系统Windows在某些情况下过于特立独行🤞 如果是新手小白建议跟我一起删除&#x2F;配置一下你的git">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git的基本使用说明">
+<meta property="og:url" content="http://zeke-chin.github.io/2021/12/01/git/index.html">
+<meta property="og:site_name" content="小Z的个人博客">
+<meta property="og:description" content="前言gti是一个由Linus Torvalds大神用10天时间开发的 开源的 世界上最好用的版本管理工具[doge] 本文仅针对Linux&#x2F;Unix系统Windows在某些情况下过于特立独行🤞 如果是新手小白建议跟我一起删除&#x2F;配置一下你的git">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/zekechin/pic/raw/master/img/image-20211208221100451.png">
+<meta property="og:image" content="https://gitee.com/zekechin/pic/raw/master/img/image-20211208221141913.png">
+<meta property="og:image" content="https://gitee.com/zekechin/pic/raw/master/img/image-20211208221228119.png">
+<meta property="og:image" content="https://gitee.com/zekechin/pic/raw/master/img/image-20211208221537987.png">
+<meta property="og:image" content="http://zeke-chin.github.io/Users/zeke/Library/Application%20Support/typora-user-images/image-20211201162904133.png">
+<meta property="og:image" content="http://zeke-chin.github.io/Users/zeke/Library/Application%20Support/typora-user-images/image-20211201163540682.png">
+<meta property="og:image" content="https://gitee.com/zekechin/pic/raw/master/img/image-20211209082234387.png">
+<meta property="og:image" content="https://gitee.com/zekechin/pic/raw/master/img/image-20211209082936019.png">
+<meta property="og:image" content="https://gitee.com/zekechin/pic/raw/master/img/image-20211209083725975.png">
+<meta property="og:image" content="https://gitee.com/zekechin/pic/raw/master/img/image-20211209085631609.png">
+<meta property="article:published_time" content="2021-12-01T07:42:47.464Z">
+<meta property="article:modified_time" content="2021-12-09T02:56:10.642Z">
+<meta property="article:author" content="Zeke.Chin">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/zekechin/pic/raw/master/img/image-20211208221100451.png">
+
+<link rel="canonical" href="http://zeke-chin.github.io/2021/12/01/git/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>git的基本使用说明 | 小Z的个人博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">小Z的个人博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">与无声中听惊雷</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="user fa-fw"></i>关于</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://zeke-chin.github.io/2021/12/01/git/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://pic.imgdb.cn/item/6182469d2ab3f51d91443e54.jpg">
+      <meta itemprop="name" content="Zeke.Chin">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小Z的个人博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          git的基本使用说明
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-12-01 07:42:47" itemprop="dateCreated datePublished" datetime="2021-12-01T07:42:47Z">2021-12-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-12-09 02:56:10" itemprop="dateModified" datetime="2021-12-09T02:56:10Z">2021-12-09</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>gti是一个由<strong>Linus Torvalds</strong>大神用10天时间开发的 开源的 世界上最好用的版本管理工具[doge]</p>
+<p>本文仅针对Linux/Unix系统Windows在某些情况下过于特立独行🤞</p>
+<p>如果是新手小白建议跟我一起删除/配置一下你的git</p>
+<span id="more"></span>
+
+<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><blockquote>
+<p>基础Linux</p>
+</blockquote>
+<ol>
+<li><p>cd                目录</p>
+</li>
+<li><p>pwd             位置</p>
+</li>
+<li><p>ls                  列表</p>
+</li>
+<li><p>rm                删除文件</p>
+</li>
+<li><p>touch           新建文件</p>
+</li>
+<li><p>rm -r           删除文件夹</p>
+</li>
+<li><p>mkidr.         新建文件夹</p>
+</li>
+<li><p>history        历史命令</p>
+</li>
+<li><p>rm -rf /.      有谁能抵抗他的诱惑呢[doge]</p>
+</li>
+</ol>
+<h1 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h1><h2 id="什么Git"><a href="#什么Git" class="headerlink" title="什么Git"></a>什么Git</h2><p>Git是一个<strong>分布式版本控制软件</strong></p>
+<p>简单来说 就是用来进行<strong>时光倒流</strong>的后悔药</p>
+<p>除此之外 还可以当作行走的配置文件</p>
+<p>而不得不提的是Git之父<strong>Linus Torvalds</strong>大神</p>
+<p>是的没错 就是那个’linux之父’ 仅用了10天时间！就把git开发出来了</p>
+<h2 id="Git的安装和配置"><a href="#Git的安装和配置" class="headerlink" title="Git的安装和配置"></a>Git的安装和配置</h2><ul>
+<li><p>在安装之我们要先确认我们有没有<code>Git</code></p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">➜  ~ <span class="built_in">which</span> git</span><br><span class="line">/usr/bin/git</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>在linux系统下大多数情况下会安装在/<code>usr/bin/git</code>目录下</li>
+<li>在mac系统下比较主流的有两种<code>Git</code><ul>
+<li>来自homebrew的Git<ul>
+<li>安装在<code>/opt/homebrew/bin/git</code>目录下</li>
+</ul>
+</li>
+<li>来自Xcode的Git<ul>
+<li>安装在<code>/usr/bin/git</code></li>
+<li>用<code>git --version</code>查看的话回发现是<code>git version 1.9.3 (Apple Git-26)</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>值得一提的是在mac中我们一般使用brew版的Git原因是Xcode版的Git不大好升级和管理，所以我们需要进行额外的配置</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">### 在bash中你需要</span></span><br><span class="line">➜  ~ vim 〜/.bash_profile</span><br><span class="line"><span class="comment"># 在最后一行加上</span></span><br><span class="line">➜  ~ <span class="built_in">export</span> PATH=<span class="string">&quot;/usr/local/bin:<span class="variable">$&#123;PATH&#125;</span>&quot;</span></span><br><span class="line"><span class="comment"># 重新载入bash配置</span></span><br><span class="line">➜  ~ <span class="built_in">source</span> ~/.bash_profile</span><br><span class="line"></span><br><span class="line"><span class="comment">### 在zsh中你需要</span></span><br><span class="line">➜  ~ vim ~/.zshrc</span><br><span class="line"><span class="comment"># 在最后一行加上</span></span><br><span class="line">➜  ~ <span class="built_in">alias</span> git=<span class="string">&quot;/opt/homebrew/bin/git&quot;</span></span><br><span class="line"><span class="comment"># 重新载入bash配置</span></span><br><span class="line">➜  ~ <span class="built_in">source</span> ~/.zshrc</span><br></pre></td></tr></table></figure>
+
+<h2 id="Git安装"><a href="#Git安装" class="headerlink" title="Git安装"></a>Git安装</h2><h3 id="在linux系统下"><a href="#在linux系统下" class="headerlink" title="在linux系统下"></a>在linux系统下</h3><ul>
+<li><p>很简单一行代码(ubuntu为例其他发行版本差不多)</p>
+<p><code>sudo apt install git</code></p>
+</li>
+</ul>
+<h3 id="在mac系统下"><a href="#在mac系统下" class="headerlink" title="在mac系统下"></a>在mac系统下</h3><ul>
+<li><p>使用homebrew</p>
+<p><code>brew install git</code></p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 检测安装成功与否</span></span><br><span class="line">➜  ~ git --version</span><br><span class="line">git version 2.34.1</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="git配置"><a href="#git配置" class="headerlink" title="git配置"></a>git配置</h2><blockquote>
+<p>Git查看配置命令</p>
+<p>Git的config有三个等级,系统级、用户级、仓库级</p>
+<p>system-&gt;global-&gt;local</p>
+<p>使用顺序是 底层覆盖顶层配置</p>
+</blockquote>
+<ul>
+<li><p>git config -l    全部配置</p>
+</li>
+<li><p>git config –system –list    系统配置</p>
+</li>
+</ul>
+<blockquote>
+<p>下面进行必须的Git配置</p>
+</blockquote>
+<ul>
+<li>设置(系统级)签名<ul>
+<li><strong>git config –global user.name “yourusername”    #名称</strong></li>
+<li><strong>git config –global user.email “<a href="mailto:&#121;&#x6f;&#x75;&#x72;&#95;&#101;&#x6d;&#x61;&#105;&#x6c;&#64;&#x65;&#x78;&#x61;&#109;&#x70;&#x6c;&#x65;&#x2e;&#99;&#x6f;&#x6d;">&#121;&#x6f;&#x75;&#x72;&#95;&#101;&#x6d;&#x61;&#105;&#x6c;&#64;&#x65;&#x78;&#x61;&#109;&#x70;&#x6c;&#x65;&#x2e;&#99;&#x6f;&#x6d;</a>“    #邮箱</strong></li>
+<li>这里的配置只是签名 并没有什么实质意义只是证明这个提交是你干的 是你的地址<ul>
+<li>(如果做错的 方便别人根据你的地址来找你[doge])</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>以github为例绑定SSH密钥，其他<ul>
+<li><p>在终端输入 <code>ls -al ~/.ssh</code>查看是否拥有公共 SSH 密钥</p>
+<ul>
+<li><p>如果有点击跳转到绑定到Github</p>
+</li>
+<li><p>如果粘贴下面的文本，替换为您的 GitHub 电子邮件地址。</p>
+<ul>
+<li><code>ssh-keygen -t ed25519 -C &quot;your_email@example.com&quot;</code></li>
+</ul>
+   <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"> ~ ssh-keygen -t ed25519 -C <span class="string">&quot;zeke.chin@icloud.com&quot;</span></span><br><span class="line"> <span class="comment"># 如果你的电脑是不支持Ed25519 算法的旧系统 可以使用</span></span><br><span class="line"> <span class="comment"># sh-keygen -t rsa -b 4096 -C &quot;your_email@example.com&quot;</span></span><br><span class="line">Generating public/private ed25519 key pair.</span><br><span class="line">Enter file <span class="keyword">in</span> <span class="built_in">which</span> to save the key (/home/zeke/.ssh/id_ed25519):</span><br><span class="line"><span class="comment"># 提示你输入保存位置 直接回车默认就好</span></span><br><span class="line"></span><br><span class="line">Created directory <span class="string">&#x27;/home/zeke/.ssh&#x27;</span>.</span><br><span class="line">Enter passphrase (empty <span class="keyword">for</span> no passphrase):</span><br><span class="line">Enter same passphrase again:</span><br><span class="line"><span class="comment"># 提示你输入密码 直接回车默认就好</span></span><br><span class="line"></span><br><span class="line">Your identification has been saved <span class="keyword">in</span> /home/zeke/.ssh/id_ed25519</span><br><span class="line">Your public key has been saved <span class="keyword">in</span> /home/zeke/.ssh/id_ed25519.pub</span><br><span class="line">The key fingerprint is:</span><br><span class="line"></span><br><span class="line"><span class="comment"># 这里就是你的密钥</span></span><br><span class="line">SHA256:xxxxxxxxxxxxxxxxxxxxxxxxxx your_email@example.com</span><br><span class="line">The key<span class="string">&#x27;s randomart image is:</span></span><br><span class="line"><span class="string">+--[ED25519 256]--+</span></span><br><span class="line"><span class="string">|        .+oo.+o=o|</span></span><br><span class="line"><span class="string">|       ..+oooo+oE|</span></span><br><span class="line"><span class="string">|        . + .oo+.|</span></span><br><span class="line"><span class="string">|         .    . .|</span></span><br><span class="line"><span class="string">|    o   S    . o |</span></span><br><span class="line"><span class="string">|   +.= . .    o  |</span></span><br><span class="line"><span class="string">|  .o*.= *        |</span></span><br><span class="line"><span class="string">|..oo.o.O +       |</span></span><br><span class="line"><span class="string">|.o. .o. =        |</span></span><br><span class="line"><span class="string">+----[SHA256]-----+</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>接着在后台启动ssh_agent</li>
+</ul>
+   <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">➜  ~ <span class="built_in">eval</span> <span class="string">&quot;<span class="subst">$(ssh-agent -s)</span>&quot;</span> </span><br><span class="line">Agent pid 38899</span><br></pre></td></tr></table></figure>
+<ul>
+<li> 将你的 SSH 私钥添加到 ssh-agent</li>
+</ul>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">➜  ~ ssh-add ~/.ssh/id_ed25519</span><br><span class="line">Identity added: /home/zeke/.ssh/id_ed25519 (your_email@example.com)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>将 SSH 密钥添加到您在 GitHub 上的帐户</li>
+</ul>
+<p>  <img src="https://gitee.com/zekechin/pic/raw/master/img/image-20211208221100451.png" style="zoom:50%;" /><img src="https://gitee.com/zekechin/pic/raw/master/img/image-20211208221141913.png"  style="zoom:38%;" /></p>
+<p>  <img src="https://gitee.com/zekechin/pic/raw/master/img/image-20211208221228119.png" alt="image-20211208221228119"></p>
+<ul>
+<li>将 SSH 公钥复制到剪贴板</li>
+</ul>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">➜  ~ cat ~/.ssh/id_ed25519.pub</span><br><span class="line">yourssh-ed25519 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</span><br><span class="line">your_email@example.com</span><br></pre></td></tr></table></figure>
+  <img src="https://gitee.com/zekechin/pic/raw/master/img/image-20211208221537987.png" style="zoom:50%;" /></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Git核心-如果你不想看就可以不看-手动滑稽🤪-单击此处跳转"><a href="#Git核心-如果你不想看就可以不看-手动滑稽🤪-单击此处跳转" class="headerlink" title="Git核心(如果你不想看就可以不看[手动滑稽🤪])单击此处跳转"></a>Git核心(如果你不想看就可以不看[手动滑稽🤪])<a href="#jump1">单击此处跳转</a></h2><img src="/Users/zeke/Library/Application Support/typora-user-images/image-20211201162904133.png"  style="zoom:75%;"  />
+
+<ul>
+<li>Remote Directory：远程仓库</li>
+<li>History ：仓库区</li>
+<li>Stage(index)：暂存区</li>
+<li>Working Directory：工作区</li>
+</ul>
+<blockquote>
+<p>Git命令</p>
+</blockquote>
+<img src="/Users/zeke/Library/Application Support/typora-user-images/image-20211201163540682.png"  style="zoom:50%;" />
+
+<ul>
+<li><p>创建仓库</p>
+<ul>
+<li>本地创建-&gt;<code>git init</code></li>
+<li>clone远程-&gt;<code>git clone [url ] </code></li>
+</ul>
+</li>
+<li><p>Git 文件状态</p>
+<ul>
+<li><strong>Untracked</strong>  ——未跟踪<ul>
+<li>野生文件 可添加到<strong>Stage</strong>(暂存区)<ul>
+<li>被标记<code>git add [file]</code>==&gt;<u><strong>Untracked</strong>–&gt;<strong>Staged</strong></u></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><strong>Unmodify</strong>  ——<strong>stage</strong>内文件<strong>未</strong>修改<ul>
+<li>标记文件 和<strong>Untracked</strong>一样<ul>
+<li>被改动<code>cont+s</code>==&gt;<u><strong>Untracked</strong>–&gt;<strong>Modified</strong></u></li>
+<li>被移除<code>git rm [file]</code>==&gt;<u><strong>Untracked</strong>–&gt;<strong>Untracked</strong></u></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><strong>Modified</strong> ——<strong>stage</strong>内文件<strong>已</strong>修改<ul>
+<li>标记文件 和<strong>Untracked</strong>不<ul>
+<li>被确实<code>git add .</code>==&gt;<u><strong>Modified</strong>–&gt;<strong>Staged</strong></u></li>
+<li>被丢弃<code>gie checkout [file]</code>==&gt;<u><strong>Modified</strong>–&gt;<strong>Unmodify</strong></u></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><strong>Staged</strong> ——<strong>stage</strong>内文件<ul>
+<li>暂存文件 等待被提交同步或取消暂存<ul>
+<li>被提交<code>git commit -m [message] </code>==&gt;<u><strong>Staged</strong>–&gt;<strong>Unmodify</strong></u></li>
+<li>被取消<code>git reset HEAD [file]</code>==&gt;<strong>Staged</strong>–&gt;<strong>Modified</strong></u></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Git仓库"><a href="#Git仓库" class="headerlink" title="Git仓库"></a>Git仓库</h2><p>这里我们就真正的开始使用git了</p>
+<h3 id="Git本地仓库"><a href="#Git本地仓库" class="headerlink" title="Git本地仓库"></a><span id = "jump1" >Git本地仓库</span></h3><ul>
+<li>在任何你想当作git本地仓库的地方对他进行初始化</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">➜  .vim <span class="built_in">pwd</span></span><br><span class="line">/Users/zeke/.vim   <span class="comment"># 你的本地仓库</span></span><br><span class="line">➜  .vim git init</span><br><span class="line">提示：使用 <span class="string">&#x27;master&#x27;</span> 作为初始分支的名称。这个默认分支名称可能会更改。要在新仓库中</span><br><span class="line">提示：配置使用初始分支名，并消除这条警告，请执行：</span><br><span class="line">提示：</span><br><span class="line">提示：	git config --global init.defaultBranch &lt;名称&gt;</span><br><span class="line">提示：</span><br><span class="line">提示：除了 <span class="string">&#x27;master&#x27;</span> 之外，通常选定的名字有 <span class="string">&#x27;main&#x27;</span>、<span class="string">&#x27;trunk&#x27;</span> 和 <span class="string">&#x27;development&#x27;</span>。</span><br><span class="line">提示：可以通过以下命令重命名刚创建的分支：</span><br><span class="line">提示：</span><br><span class="line">提示：	git branch -m &lt;name&gt;</span><br><span class="line">已初始化空的 Git 仓库于 /Users/zeke/.vim/.git/</span><br><span class="line">➜  .vim git:(master) ✗ sudo rm -r .git <span class="comment"># 删除初始化文件</span></span><br><span class="line">➜  .vim git config --global init.defaultBranch main </span><br><span class="line"><span class="comment"># github仓库的分支默认是main所以我们对init进行初始化</span></span><br><span class="line">➜  .vim git init</span><br><span class="line">已初始化空的 Git 仓库于 /Users/zeke/.vim/.git/</span><br><span class="line"><span class="comment"># 此处初始化分支已更改为main</span></span><br><span class="line">➜  .vim git:(main) ✗</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>如果我不想要这个本地仓库该怎么办呢？</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">➜  .vim ls -a</span><br><span class="line">.          .DS_Store  <span class="built_in">autoload</span>   vim        vimrc.html</span><br><span class="line">..         .netrwhist plugged    vimrc</span><br><span class="line"></span><br><span class="line">➜  .vim git init</span><br><span class="line">已初始化空的 Git 仓库于 /Users/zeke/.vim/.git/</span><br><span class="line">➜  .vim git:(main) ✗ ls -a</span><br><span class="line">.          .DS_Store  .netrwhist plugged    vimrc</span><br><span class="line">..         .git       <span class="built_in">autoload</span>   vim        vimrc.html</span><br><span class="line"><span class="comment"># 通过观察我们很容易得知 git init本质就是在当前目录下生成.git文件</span></span><br><span class="line"><span class="comment"># 所以不想要这个仓库的方法就是移除.git文件即可</span></span><br><span class="line"></span><br><span class="line">➜  .vim git:(main) ✗ sudo rm -r .git</span><br><span class="line">➜  .vim ls -a</span><br><span class="line">.          .DS_Store  <span class="built_in">autoload</span>   vim        vimrc.html</span><br><span class="line">..         .netrwhist plugged    vimrc</span><br></pre></td></tr></table></figure>
+
+<h3 id="Git远程仓库"><a href="#Git远程仓库" class="headerlink" title="Git远程仓库"></a>Git远程仓库</h3><ul>
+<li><p>这里以建立github仓库为例，其他平台差不多</p>
+<img src="https://gitee.com/zekechin/pic/raw/master/img/image-20211209082234387.png"  style="zoom:445%;" /></li>
+</ul>
+<img src="https://gitee.com/zekechin/pic/raw/master/img/image-20211209082936019.png"  style="zoom:35%;" />
+
+<img src="https://gitee.com/zekechin/pic/raw/master/img/image-20211209083725975.png"  style="zoom:45%;" />
+
+<ul>
+<li>接下来把本地仓库和远程仓库link起来</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 添加vimrn文件到stage</span></span><br><span class="line">➜  .vim git:(main) ✗ git add vimrc</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看本地仓库状态</span></span><br><span class="line">➜  .vim git:(main) ✗ git status</span><br><span class="line">位于分支 main</span><br><span class="line"></span><br><span class="line">尚无提交</span><br><span class="line"><span class="comment"># 可以看到vimrc被追踪而别的文件没有</span></span><br><span class="line">要提交的变更：</span><br><span class="line">  （使用 <span class="string">&quot;git rm --cached &lt;文件&gt;...&quot;</span> 以取消暂存）</span><br><span class="line">	新文件：   vimrc</span><br><span class="line"></span><br><span class="line">未跟踪的文件:</span><br><span class="line">  （使用 <span class="string">&quot;git add &lt;文件&gt;...&quot;</span> 以包含要提交的内容）</span><br><span class="line">	.DS_Store</span><br><span class="line">	.netrwhist</span><br><span class="line">	<span class="built_in">autoload</span>/</span><br><span class="line">	plugged/</span><br><span class="line">	vim/</span><br><span class="line">	vimrc.html</span><br><span class="line">	</span><br><span class="line"><span class="comment"># 提交stag -m “提交说明”</span></span><br><span class="line">➜  .vim git:(main) ✗ git commit -m <span class="string">&#x27;vimrc配置文件&#x27;</span></span><br><span class="line">[main（根提交） 9ceed95] vimrc配置文件</span><br><span class="line"> 1 file changed, 71 insertions(+)</span><br><span class="line"> create mode 100644 vimrc</span><br><span class="line"> </span><br><span class="line"> <span class="comment"># 查看有无与该本地仓库关联的远程仓库</span></span><br><span class="line">➜  .vim git:(main) ✗ git remote -v</span><br><span class="line">➜  .vim git:(main) ✗              <span class="comment">#没有就输出空</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加远程仓库 </span></span><br><span class="line"><span class="comment"># git remote add “仓库别名 通常用origin” “远程仓库地址”</span></span><br><span class="line">➜  .vim git:(main) ✗ git remote add origin https://github.com/zeke-chin/.vim.git</span><br><span class="line">➜  .vim git:(main) ✗ git remote -v</span><br><span class="line">origin	https://github.com/zeke-chin/.vim.git (fetch)</span><br><span class="line">origin	https://github.com/zeke-chin/.vim.git (push)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 提交到Github</span></span><br><span class="line">➜  .vim git:(main) ✗ git push -u origin main</span><br><span class="line">枚举对象中: 3, 完成.</span><br><span class="line">对象计数中: 100% (3/3), 完成.</span><br><span class="line">使用 8 个线程进行压缩</span><br><span class="line">压缩对象中: 100% (2/2), 完成.</span><br><span class="line">写入对象中: 100% (3/3), 1.11 KiB | 1.11 MiB/s, 完成.</span><br><span class="line">总共 3（差异 0），复用 0（差异 0），包复用 0</span><br><span class="line">remote: This repository moved. Please use the new location:</span><br><span class="line">remote:   https://github.com/Zeke-chin/.vim.git</span><br><span class="line">To https://github.com/zeke-chin/.vim.git</span><br><span class="line"> * [new branch]      main -&gt; main</span><br><span class="line">分支 <span class="string">&#x27;main&#x27;</span> 设置为跟踪来自 <span class="string">&#x27;origin&#x27;</span> 的远程分支 <span class="string">&#x27;main&#x27;</span>。</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>验证是否提交成功</li>
+</ul>
+<img src="https://gitee.com/zekechin/pic/raw/master/img/image-20211209085631609.png"  style="zoom:45%;" />
+
+
+
+<h3 id="在其他电脑上克隆仓库"><a href="#在其他电脑上克隆仓库" class="headerlink" title="在其他电脑上克隆仓库"></a>在其他电脑上克隆仓库</h3><ul>
+<li>就是在任何电脑上 拉下github上的远程仓库</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 你将会得的一个和你之前创建的本地仓库</span></span><br><span class="line"><span class="comment"># 一摸一样的文件夹</span></span><br><span class="line">➜  ~ git <span class="built_in">clone</span> https://github.com/zeke-chin/.vim</span><br><span class="line">正克隆到 <span class="string">&#x27;.vim&#x27;</span>...</span><br><span class="line">remote: Enumerating objects: 3, <span class="keyword">done</span>.</span><br><span class="line">remote: Counting objects: 100% (3/3), <span class="keyword">done</span>.</span><br><span class="line">remote: Compressing objects: 100% (2/2), <span class="keyword">done</span>.</span><br><span class="line">remote: Total 3 (delta 0), reused 3 (delta 0), pack-reused 0</span><br><span class="line">展开对象中: 100% (3/3), 1.09 KiB | 1.09 MiB/s, 完成.</span><br><span class="line">➜  ~ <span class="built_in">cd</span> .vim</span><br><span class="line">➜  .vim git:(main) ls</span><br><span class="line">vimrc</span><br><span class="line">➜  .vim git:(main) git remote -v</span><br><span class="line">origin	https://github.com/zeke-chin/.vim (fetch)</span><br><span class="line">origin	https://github.com/zeke-chin/.vim (push)</span><br></pre></td></tr></table></figure>
+
+<h1 id="peace-amp-love"><a href="#peace-amp-love" class="headerlink" title="peace&amp;love"></a><em>peace</em>&amp;<em>love</em></h1><script type="text&#x2F;javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.7.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.7.0/dist/mindmap.min.css">
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/11/18/%E4%BD%BF%E7%94%A8Digitalocean%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84VPS/" rel="prev" title="搭建科学上网节点">
+      <i class="fa fa-chevron-left"></i> 搭建科学上网节点
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/12/05/lock%20fn/" rel="next" title="在mac下实现Lock+FN">
+      在mac下实现Lock+FN <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2"><span class="nav-number">1.1.</span> <span class="nav-text">写在前面</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Git"><span class="nav-number">2.</span> <span class="nav-text">Git</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88Git"><span class="nav-number">2.1.</span> <span class="nav-text">什么Git</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Git%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE"><span class="nav-number">2.2.</span> <span class="nav-text">Git的安装和配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Git%E5%AE%89%E8%A3%85"><span class="nav-number">2.3.</span> <span class="nav-text">Git安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8linux%E7%B3%BB%E7%BB%9F%E4%B8%8B"><span class="nav-number">2.3.1.</span> <span class="nav-text">在linux系统下</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8mac%E7%B3%BB%E7%BB%9F%E4%B8%8B"><span class="nav-number">2.3.2.</span> <span class="nav-text">在mac系统下</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git%E9%85%8D%E7%BD%AE"><span class="nav-number">2.4.</span> <span class="nav-text">git配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Git%E6%A0%B8%E5%BF%83-%E5%A6%82%E6%9E%9C%E4%BD%A0%E4%B8%8D%E6%83%B3%E7%9C%8B%E5%B0%B1%E5%8F%AF%E4%BB%A5%E4%B8%8D%E7%9C%8B-%E6%89%8B%E5%8A%A8%E6%BB%91%E7%A8%BD%F0%9F%A4%AA-%E5%8D%95%E5%87%BB%E6%AD%A4%E5%A4%84%E8%B7%B3%E8%BD%AC"><span class="nav-number">2.5.</span> <span class="nav-text">Git核心(如果你不想看就可以不看[手动滑稽🤪])单击此处跳转</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Git%E4%BB%93%E5%BA%93"><span class="nav-number">2.6.</span> <span class="nav-text">Git仓库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Git%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93"><span class="nav-number">2.6.1.</span> <span class="nav-text">Git本地仓库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Git%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93"><span class="nav-number">2.6.2.</span> <span class="nav-text">Git远程仓库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8%E5%85%B6%E4%BB%96%E7%94%B5%E8%84%91%E4%B8%8A%E5%85%8B%E9%9A%86%E4%BB%93%E5%BA%93"><span class="nav-number">2.6.3.</span> <span class="nav-text">在其他电脑上克隆仓库</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#peace-amp-love"><span class="nav-number">3.</span> <span class="nav-text">peace&amp;love</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Zeke.Chin"
+      src="https://pic.imgdb.cn/item/6182469d2ab3f51d91443e54.jpg">
+  <p class="site-author-name" itemprop="name">Zeke.Chin</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zeke.Chin</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
+
