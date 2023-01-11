@@ -23,17 +23,17 @@
 
   <meta name="description" content="前言">
 <meta property="og:type" content="website">
-<meta property="og:title" content="小Z的个人博客">
-<meta property="og:url" content="http://zeke-chin.github.io/md_lib/blog%20%E6%A8%A1%E7%89%88.html">
+<meta property="og:title" content="windows下Alacritty+zsh+ohmyzsh环境搭建.md">
+<meta property="og:url" content="http://zeke-chin.github.io/md_lib/windows%E4%B8%8BAlacritty+zsh+ohmyzsh%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.html">
 <meta property="og:site_name" content="小Z的个人博客">
 <meta property="og:description" content="前言">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-12-09T01:10:58.061Z">
-<meta property="article:modified_time" content="2021-12-09T01:10:58.052Z">
+<meta property="article:published_time" content="2022-04-02T08:01:21.861Z">
+<meta property="article:modified_time" content="2022-03-26T12:05:17.872Z">
 <meta property="article:author" content="Zeke.Chin">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://zeke-chin.github.io/md_lib/blog%20%E6%A8%A1%E7%89%88">
+<link rel="canonical" href="http://zeke-chin.github.io/md_lib/windows%E4%B8%8BAlacritty+zsh+ohmyzsh%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA">
 
 
 <script id="page-configurations">
@@ -46,7 +46,7 @@
   };
 </script>
 
-  <title> | 小Z的个人博客
+  <title>windows下Alacritty+zsh+ohmyzsh环境搭建.md | 小Z的个人博客
 </title>
   
 
@@ -171,7 +171,7 @@
     <div class="post-block" lang="zh-CN">
       <header class="post-header">
 
-<h1 class="post-title" itemprop="name headline">
+<h1 class="post-title" itemprop="name headline">windows下Alacritty+zsh+ohmyzsh环境搭建.md
 </h1>
 
 <div class="post-meta">
@@ -187,7 +187,97 @@
       <div class="post-body">
           <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><span id="more"></span>
 
-<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><h1 id="配置你的git"><a href="#配置你的git" class="headerlink" title="配置你的git"></a>配置你的git</h1><script type="text&#x2F;javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.7.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.7.0/dist/mindmap.min.css">
+<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>由于最近有在PC端部署C++项目的需求</p>
+<p>但是看着越看越丑的PowerShell</p>
+<p>我实在忍受不了了</p>
+<p>于是我在尝试了别人的powershell配置和GitBash之后最后</p>
+<p>决定选择了wsl1的方案</p>
+<h1 id="Alacritty"><a href="#Alacritty" class="headerlink" title="Alacritty"></a>Alacritty</h1><p>首先 我是重度<strong>Alacritty+zsh</strong>用户(macos下用iterm)</p>
+<p>所以 在windwos上自然也是要用</p>
+<p>令人觉得窗外的太阳是如此灿烂的是 现在alacritty是<strong>支持windwos</strong>的</p>
+<p>并且支持使用<code>%APPDATA%\alacritty\alacritty.yml</code>来自定义你的Alacritty</p>
+<blockquote>
+<p>Alacritty</p>
+<ul>
+<li>github:<a target="_blank" rel="noopener" href="https://github.com/alacritty/alacritty">https://github.com/alacritty/alacritty</a></li>
+<li>官网：<a target="_blank" rel="noopener" href="https://alacritty.org/">https://alacritty.org/</a></li>
+</ul>
+</blockquote>
+<h1 id="WSL"><a href="#WSL" class="headerlink" title="WSL"></a>WSL</h1><p>适用于 Linux 的 Windows 子系统 (WSL) 可让开发人员直接在 Windows 上按原样运行 GNU/Linux 环境（包括大多数命令行工具、实用工具和应用程序），且不会产生传统虚拟机或双启动设置开销。</p>
+<p>现在微软有两款WSL分别是<strong>WSL1</strong>和<strong>WSL2</strong></p>
+<h2 id="比较-WSL-1-和-WSL-2"><a href="#比较-WSL-1-和-WSL-2" class="headerlink" title="比较 WSL 1 和 WSL 2"></a>比较 WSL 1 和 WSL 2</h2><table>
+<thead>
+<tr>
+<th align="left">功能</th>
+<th align="left">WSL 1</th>
+<th align="left">WSL 2</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Windows 和 Linux 之间的集成</td>
+<td align="left">✅</td>
+<td align="left">✅</td>
+</tr>
+<tr>
+<td align="left">启动时间短</td>
+<td align="left">✅</td>
+<td align="left">✅</td>
+</tr>
+<tr>
+<td align="left">与传统虚拟机相比，占用的资源量少</td>
+<td align="left">✅</td>
+<td align="left">✅</td>
+</tr>
+<tr>
+<td align="left">可以与当前版本的 VMware 和 VirtualBox 一起运行</td>
+<td align="left">✅</td>
+<td align="left">✅</td>
+</tr>
+<tr>
+<td align="left">托管 VM</td>
+<td align="left">❌</td>
+<td align="left">✅</td>
+</tr>
+<tr>
+<td align="left">完整的 Linux 内核</td>
+<td align="left">❌</td>
+<td align="left">✅</td>
+</tr>
+<tr>
+<td align="left">完全的系统调用兼容性</td>
+<td align="left">❌</td>
+<td align="left">✅</td>
+</tr>
+<tr>
+<td align="left">跨 OS 文件系统的性能</td>
+<td align="left">✅</td>
+<td align="left">❌</td>
+</tr>
+</tbody></table>
+<h2 id="为什么我用WSL1而不用WSL2？"><a href="#为什么我用WSL1而不用WSL2？" class="headerlink" title="为什么我用WSL1而不用WSL2？"></a>为什么我用WSL1而不用WSL2？</h2><p>因为我认为WSL2的优势可以总结为</p>
+<ul>
+<li>可以调用GPU从而使用CUDA<ul>
+<li>但是性能损耗大概在18%的样子而且配置起来很奇怪</li>
+</ul>
+</li>
+<li>简单概括就是更好的性能<ul>
+<li>我认为这更好的性能 不大于 OS文件系统调用的便捷性</li>
+</ul>
+</li>
+</ul>
+<p><em><strong>适合自己的才是最好的</strong></em></p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/windows/wsl/compare-versions">🔗官方对比</a></p>
+</blockquote>
+<h2 id="WSL的安装"><a href="#WSL的安装" class="headerlink" title="WSL的安装"></a>WSL的安装</h2><ul>
+<li><p>保证你是<strong>Windows 10 版本 2004 及更高版本</strong>（内部版本 19041 及更高版本）或 <strong>Windows 11</strong>。</p>
+</li>
+<li><pre><code class="powershell">wsl --list --onlin
+</code></pre>
+<p>- </p>
+</li>
+</ul>
+<script type="text&#x2F;javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.7.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.7.0/dist/mindmap.min.css">
       </div>
       
       
@@ -248,7 +338,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2"><span class="nav-number">1.1.</span> <span class="nav-text">写在前面</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E4%BD%A0%E7%9A%84git"><span class="nav-number">2.</span> <span class="nav-text">配置你的git</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2"><span class="nav-number">1.1.</span> <span class="nav-text">写在前面</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Alacritty"><span class="nav-number">2.</span> <span class="nav-text">Alacritty</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WSL"><span class="nav-number">3.</span> <span class="nav-text">WSL</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AF%94%E8%BE%83-WSL-1-%E5%92%8C-WSL-2"><span class="nav-number">3.1.</span> <span class="nav-text">比较 WSL 1 和 WSL 2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E6%88%91%E7%94%A8WSL1%E8%80%8C%E4%B8%8D%E7%94%A8WSL2%EF%BC%9F"><span class="nav-number">3.2.</span> <span class="nav-text">为什么我用WSL1而不用WSL2？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WSL%E7%9A%84%E5%AE%89%E8%A3%85"><span class="nav-number">3.3.</span> <span class="nav-text">WSL的安装</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

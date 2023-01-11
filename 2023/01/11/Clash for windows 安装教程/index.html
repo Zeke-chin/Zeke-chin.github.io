@@ -21,19 +21,26 @@
     var CONFIG = {"hostname":"zeke-chin.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="前言在Ubuntu进行sudo apt upgrade时出现E: Could not get lock &#x2F;var&#x2F;lib&#x2F;dpkg&#x2F;lock-frontend - open (11: Resource temporarily unavailable)报错">
+  <meta name="description" content="Clash for windows 安装教程1. 简介Clash 是一个使用 Go 语言编写，基于规则的跨平台代理软件核心程序。 Clash for Windows 是目前在 Windows 上最好用的图形化分支。通过 Clash API 来配置和控制 Clash 核心程序，降低了 Clash 的使用成本，小白也能轻松入门使用。 2. 下载地址https:&#x2F;&#x2F;wwc.lanzoum.com&#x2F;isU">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Ubuntu常见问题——更新报错">
-<meta property="og:url" content="http://zeke-chin.github.io/2021/12/05/Ubuntu%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E2%80%94%E6%9B%B4%E6%96%B0%E6%8A%A5%E9%94%99/index.html">
+<meta property="og:title" content="小Z的个人博客">
+<meta property="og:url" content="http://zeke-chin.github.io/2023/01/11/Clash%20for%20windows%20%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/index.html">
 <meta property="og:site_name" content="小Z的个人博客">
-<meta property="og:description" content="前言在Ubuntu进行sudo apt upgrade时出现E: Could not get lock &#x2F;var&#x2F;lib&#x2F;dpkg&#x2F;lock-frontend - open (11: Resource temporarily unavailable)报错">
+<meta property="og:description" content="Clash for windows 安装教程1. 简介Clash 是一个使用 Go 语言编写，基于规则的跨平台代理软件核心程序。 Clash for Windows 是目前在 Windows 上最好用的图形化分支。通过 Clash API 来配置和控制 Clash 核心程序，降低了 Clash 的使用成本，小白也能轻松入门使用。 2. 下载地址https:&#x2F;&#x2F;wwc.lanzoum.com&#x2F;isU">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-12-05T10:11:15.872Z">
-<meta property="article:modified_time" content="2021-12-06T13:48:28.304Z">
+<meta property="og:image" content="https://gitee.com/zekechin/pic/raw/master/image-20230111105135460.png">
+<meta property="og:image" content="https://gitee.com/zekechin/pic/raw/master/clash-win-02.webp">
+<meta property="og:image" content="https://gitee.com/zekechin/pic/raw/master/clash-sub2.webp">
+<meta property="og:image" content="https://gitee.com/zekechin/pic/raw/master/clash-win-04-20230111105039075.webp">
+<meta property="og:image" content="http://zeke-chin.github.io/2023/01/11/Clash%20for%20windows%20%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/Clash%20for%20windows%20%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B.assets/image-20230111105841184.png">
+<meta property="og:image" content="https://gitee.com/zekechin/pic/raw/master/clash-win-app-last.webp">
+<meta property="article:published_time" content="2023-01-11T02:53:29.685Z">
+<meta property="article:modified_time" content="2023-01-11T02:58:48.100Z">
 <meta property="article:author" content="Zeke.Chin">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/zekechin/pic/raw/master/image-20230111105135460.png">
 
-<link rel="canonical" href="http://zeke-chin.github.io/2021/12/05/Ubuntu%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E2%80%94%E6%9B%B4%E6%96%B0%E6%8A%A5%E9%94%99/">
+<link rel="canonical" href="http://zeke-chin.github.io/2023/01/11/Clash%20for%20windows%20%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/">
 
 
 <script id="page-configurations">
@@ -46,7 +53,7 @@
   };
 </script>
 
-  <title>Ubuntu常见问题——更新报错 | 小Z的个人博客</title>
+  <title> | 小Z的个人博客</title>
   
 
 
@@ -166,7 +173,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://zeke-chin.github.io/2021/12/05/Ubuntu%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E2%80%94%E6%9B%B4%E6%96%B0%E6%8A%A5%E9%94%99/">
+    <link itemprop="mainEntityOfPage" href="http://zeke-chin.github.io/2023/01/11/Clash%20for%20windows%20%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://pic.imgdb.cn/item/6182469d2ab3f51d91443e54.jpg">
@@ -179,7 +186,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Ubuntu常见问题——更新报错
+          
         </h1>
 
         <div class="post-meta">
@@ -188,16 +195,10 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2021-12-05 10:11:15" itemprop="dateCreated datePublished" datetime="2021-12-05T10:11:15Z">2021-12-05</time>
+              <time title="创建时间：2023-01-11 02:53:29 / 修改时间：02:58:48" itemprop="dateCreated datePublished" datetime="2023-01-11T02:53:29Z">2023-01-11</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-06 13:48:28" itemprop="dateModified" datetime="2021-12-06T13:48:28Z">2021-12-06</time>
-              </span>
 
           
 
@@ -210,25 +211,48 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在<strong>Ubuntu</strong>进行<code>sudo apt upgrade</code>时出现<code>E: Could not get lock /var/lib/dpkg/lock-frontend - open (11: Resource temporarily unavailable)</code>报错</p>
-<span id="more"></span>
-
-<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>在<strong>Ubuntu</strong>进行包更新时</p>
-<p>出现</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">root@xray:~# sudo apt upgrade</span><br><span class="line">E: Could not get lock /var/lib/dpkg/lock-frontend - open (11: Resource temporarily unavailable)</span><br><span class="line">E: Unable to acquire the dpkg frontend lock (/var/lib/dpkg/lock-frontend), is another process using it?</span><br></pre></td></tr></table></figure>
-
-
-
-<h1 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h1><h2 id="情况一"><a href="#情况一" class="headerlink" title="情况一"></a>情况一</h2><p>先<code>sudo rm /var/cache/apt/archives/lock</code></p>
-<p>再<code>sudo rm /var/lib/dpkg/lock</code></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">root@xray:~<span class="comment"># sudo rm /var/cache/apt/archives/lock</span></span><br><span class="line">root@xray:~<span class="comment"># </span></span><br><span class="line">root@xray:~<span class="comment"># sudo rm /var/lib/dpkg/lock</span></span><br><span class="line">root@xray:~<span class="comment"># </span></span><br><span class="line">root@xray:~<span class="comment"># sudo apt upgrade</span></span><br><span class="line">Reading package lists... Done</span><br><span class="line">Building dependency tree       </span><br><span class="line">Reading state information... Done</span><br><span class="line">Calculating upgrade... Done</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="情况二"><a href="#情况二" class="headerlink" title="情况二"></a>情况二</h2><p>根据报错情况来处理</p>
-<p>如这里<code>packages can be upgraded. Run &#39;apt list --upgradable&#39; to see them.</code>他让我们看一下包的情况</p>
-<p>看完再upgrade竟然就可以了🤔</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">root@xray:/<span class="comment"># sudo apt upgrade</span></span><br><span class="line">E: Could not get lock /var/lib/dpkg/lock - open (11: Resource temporarily unavailable)</span><br><span class="line">E: Unable to lock the administration directory (/var/lib/dpkg/), is another process using it?</span><br><span class="line">root@xray:/<span class="comment"># sudo apt update</span></span><br><span class="line">Hit:1 http://azure.archive.ubuntu.com/ubuntu bionic InRelease</span><br><span class="line">Hit:2 http://azure.archive.ubuntu.com/ubuntu bionic-updates InRelease</span><br><span class="line">Hit:3 http://azure.archive.ubuntu.com/ubuntu bionic-backports InRelease</span><br><span class="line">Hit:4 http://security.ubuntu.com/ubuntu bionic-security InRelease               </span><br><span class="line">Hit:5 http://nginx.org/packages/mainline/ubuntu bionic InRelease      </span><br><span class="line">Reading package lists... Done</span><br><span class="line">Building dependency tree       </span><br><span class="line">Reading state information... Done</span><br><span class="line">164 packages can be upgraded. Run <span class="string">&#x27;apt list --upgradable&#x27;</span> to see them.</span><br><span class="line">root@xray:/<span class="comment"># apt list --upgradable</span></span><br><span class="line">Listing... Done</span><br><span class="line">accountsservice/bionic-updates,bionic-security 0.6.45-1ubuntu1.3 amd64 [upgradable from: 0.6.45-1ubuntu1]</span><br><span class="line">......</span><br><span class="line">/bionic-updates,bionic-security 2021.08.28-0ubuntu1~18.04.1 all [upgradable from: 2018.05.09-0ubuntu1~18.04.1]</span><br><span class="line">xxd/bionic-updates,bionic-security 2:8.0.1453-1ubuntu1.7 amd64 [upgradable from: 2:8.0.1453-1ubuntu1.3]</span><br><span class="line">root@xray:/<span class="comment"># apt upgrade</span></span><br><span class="line">Reading package lists... Done</span><br><span class="line">Building dependency tree       </span><br><span class="line">Reading state information... Done</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+        <h1 id="Clash-for-windows-安装教程"><a href="#Clash-for-windows-安装教程" class="headerlink" title="Clash for windows 安装教程"></a>Clash for windows 安装教程</h1><h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h2><p>Clash 是一个使用 Go 语言编写，基于规则的跨平台代理软件核心程序。</p>
+<p>Clash for Windows 是目前在 Windows 上最好用的图形化分支。通过 Clash API 来配置和控制 Clash 核心程序，降低了 Clash 的使用成本，小白也能轻松入门使用。</p>
+<h2 id="2-下载地址"><a href="#2-下载地址" class="headerlink" title="2. 下载地址"></a>2. 下载地址</h2><p><a target="_blank" rel="noopener" href="https://wwc.lanzoum.com/isULI0kpb2wb">https://wwc.lanzoum.com/isULI0kpb2wb</a><br>密码:2snd</p>
+<h2 id="3-配置使用教程"><a href="#3-配置使用教程" class="headerlink" title="3. 配置使用教程"></a>3. 配置使用教程</h2><ul>
+<li><p>1、通过上面链接下载后解压，（若无法解压下载<a target="_blank" rel="noopener" href="https://www.7-zip.org/download.html">7z</a>）进入文件夹打开<strong>Clash for Windows.exe</strong></p>
+</li>
+<li><p>2、添加配置文件</p>
+<ul>
+<li>通过本地添加<ul>
+<li>将收到的<strong>xx.yaml</strong>文件添加进clash for windows</li>
+<li><img src="https://gitee.com/zekechin/pic/raw/master/image-20230111105135460.png" alt="image-20230111105135460"></li>
+</ul>
+</li>
+<li>通过订阅地址添加<ul>
+<li><img src="https://gitee.com/zekechin/pic/raw/master/clash-win-02.webp" alt="windows代理设置02"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>3、切换到proxies（代理）一栏，会看到很多节点，单击无线图标可以查看延迟等。选择你的节点，用鼠标点下即可。其他不懂的不要动。</p>
+</li>
+</ul>
+<p><img src="https://gitee.com/zekechin/pic/raw/master/clash-sub2.webp" alt="windows代理设置03-选择节点"></p>
+<ul>
+<li>4、点击常规,打开系统代理和开机启动两项即可。如果需要局域网共享可以打开允许局域网连接，默认是关闭。</li>
+</ul>
+<p><img src="https://gitee.com/zekechin/pic/raw/master/clash-win-04-20230111105039075.webp" alt="windows代理设置04"></p>
+<ul>
+<li>这样，打开浏览器即可访问代理所属环境的网站了。（打开<a target="_blank" rel="noopener" href="https://www.youtube.com/">油管</a>进行测试）</li>
+</ul>
+<p><img src="Clash%20for%20windows%20%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B.assets/image-20230111105841184.png" alt="image-20230111105841184"></p>
+<h2 id="4、代理模式（小白可以不看）-代理模式小白可以不看"><a href="#4、代理模式（小白可以不看）-代理模式小白可以不看" class="headerlink" title="4、代理模式（小白可以不看） 代理模式小白可以不看"></a>4、代理模式（小白可以不看） 代理模式小白可以不看</h2><ul>
+<li>全局（Global）：所有请求直接发往代理服务器</li>
+<li>规则（Rule）：所有请求根据配置文件规则进行分流</li>
+<li>直连（ Direct ）：所有请求直接发往目的地</li>
+</ul>
+<h2 id="5、上不了网（无法访问，请检查代理）"><a href="#5、上不了网（无法访问，请检查代理）" class="headerlink" title="5、上不了网（无法访问，请检查代理）"></a>5、上不了网（无法访问，请检查代理）</h2><ul>
+<li>方法一：删除先前的配置文件，然后通过url重新下载就可以解决问题了。</li>
+<li>方法二：在任务栏的搜索框中输入“cmd”，右键点击命令提示符，选择以管理员身份运行，在管理员：命令提示符窗口中执行以下的命令：netsh winsock reset 回车。然后重启电脑，再开clash，Ok</li>
+<li>方法三：打开系统设置—-网络和Internet设置—-关闭代理，退出clash,在重启clash即可（如下图）。</li>
+</ul>
+<p><img src="https://gitee.com/zekechin/pic/raw/master/clash-win-app-last.webp" alt="windows代理设置"></p>
 <script type="text&#x2F;javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.7.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.7.0/dist/mindmap.min.css">
     </div>
 
@@ -244,13 +268,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/12/05/lock%20fn/" rel="prev" title="在mac下实现Lock+FN">
-      <i class="fa fa-chevron-left"></i> 在mac下实现Lock+FN
+    <a href="/2022/01/06/%E5%88%98%E4%BA%8C01-%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/" rel="prev" title="线性模型">
+      <i class="fa fa-chevron-left"></i> 线性模型
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/12/07/%E6%9B%BF%E6%8D%A2%E2%80%94vim%E8%BF%9B%E9%98%B6/" rel="next" title="vim进阶—替换">
-      vim进阶—替换 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -309,7 +330,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2"><span class="nav-number">1.1.</span> <span class="nav-text">写在前面</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">解决办法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%83%85%E5%86%B5%E4%B8%80"><span class="nav-number">2.1.</span> <span class="nav-text">情况一</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%83%85%E5%86%B5%E4%BA%8C"><span class="nav-number">2.2.</span> <span class="nav-text">情况二</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Clash-for-windows-%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B"><span class="nav-number">1.</span> <span class="nav-text">Clash for windows 安装教程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E7%AE%80%E4%BB%8B"><span class="nav-number">1.1.</span> <span class="nav-text">1. 简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E4%B8%8B%E8%BD%BD%E5%9C%B0%E5%9D%80"><span class="nav-number">1.2.</span> <span class="nav-text">2. 下载地址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E9%85%8D%E7%BD%AE%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B"><span class="nav-number">1.3.</span> <span class="nav-text">3. 配置使用教程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4%E3%80%81%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F%EF%BC%88%E5%B0%8F%E7%99%BD%E5%8F%AF%E4%BB%A5%E4%B8%8D%E7%9C%8B%EF%BC%89-%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F%E5%B0%8F%E7%99%BD%E5%8F%AF%E4%BB%A5%E4%B8%8D%E7%9C%8B"><span class="nav-number">1.4.</span> <span class="nav-text">4、代理模式（小白可以不看） 代理模式小白可以不看</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5%E3%80%81%E4%B8%8A%E4%B8%8D%E4%BA%86%E7%BD%91%EF%BC%88%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AE%EF%BC%8C%E8%AF%B7%E6%A3%80%E6%9F%A5%E4%BB%A3%E7%90%86%EF%BC%89"><span class="nav-number">1.5.</span> <span class="nav-text">5、上不了网（无法访问，请检查代理）</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
